@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="pt-br">
+    <meta charset="UTF-8">
+    <title>Cadastro de Dados Abiótico</title>
+    <link rel="stylesheet" type="text/css" href="css/form.css"/>
+</head>
+<body>
+<form method="post" id="cadastro" action="">
+    <fieldset>
+        <legend>Dados Abióticos</legend>
+        <fieldset>
+            <legend></legend>
+            <p>
+                <label for="aparelhoId">Aparelho: </label>
+                <select name="nAparelho" id="aparelhoId">
+                    <option></option>
+                </select>
+
+                <label for="LocalColetaId">Local da Coleta: </label>
+                <select name="nLocalColeta" id="localColetaId">
+                    <option></option>
+                </select>
+            </p>
+            </fieldset>
+        <fieldset>
+            <legend></legend>
+            <p>
+                <label for="cPlanc">Planc: </label><input id="cPlanc" name="tPlanc" type="text" size="10" maxlength="50"/>
+
+                <label for="cRede">Rede: </label><input id="cRede" name="tRede" type="text" size="10" maxlength="50"/>
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend></legend>
+            <p>
+                <label for="cMargem">Margem: </label><input id="cMargem" name="tMargem" type="text" size="10" maxlength="50"/>
+
+                <label for="cSMF">SMF: </label><input id="cSMF" name="tSMF" type="text" size="10" maxlength="50"/>
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend></legend>
+           <p>
+                <label for="cAtividade">Atividade: </label><input id="cAtividade" name="tAtividade" type="text" size="10" maxlength="50"/>
+
+                <label for="cVento">Vento: </label><input id="cVento" name="tVento" type="text" size="10" maxlength="50"/>
+
+                <label for="cNebulosidade">Nebulosidade: </label><input id="cNebulosidade" name="tNebulosidade" type="text" size="10" maxlength="50"/>
+            </p>
+            <p>
+                <label for="cchuva">Chuva: </label><input id="cChuva" name="tChuva" type="text" size="10" maxlength="50"/>
+
+                <label for="cTar">Temperatura do Ar: </label><input id="cTar" name="tTar" type="text" size="10" maxlength="50"/>
+
+                <label for="cTagua">Temperatura da Água: </label><input id="cTagua" name="tAgua" type="text" size="10" maxlength="50"/>
+            </p>
+            <p>
+                <label for="cTransp">Transparência: </label><input id="cTransp" name="tTransp" type="text" size="10" maxlength="50"/>
+
+                <label for="cPh">PH: </label><input id="cPh" name="tPh" type="text" size="10" maxlength="50"/>
+
+                <label for="cCond">Condição: </label><input id="cCond" name="tcond" type="text" size="10" maxlength="50"/>
+            </p>
+            <p>
+                <label for="cOdmg">Oxigênio Dissolvido: </label><input id="cOdmg" name="tOdmg" type="text" size="10" maxlength="50"/>
+
+                <label for="cVolume">Volume: </label><input id="cVolume" name="tVolume" type="text" size="10" maxlength="50"/>
+            </p>
+            </fieldset>
+        <fieldset>
+            <legend></legend>
+            <p>
+                <label for="cOvo">Ovo: </label><input id="cOvo" name="tOvo" type="text" size="10" maxlength="50"/>
+
+                <label for="cLar1">Larva 1: </label><input id="cLar1" name="tLar1" type="text" size="10" maxlength="50"/>
+
+                <label for="cLar2">Larva 2: </label><input id="cLar2" name="tLar2" type="text" size="10" maxlength="50"/>
+            </p>
+            <p>
+                <label for="cJuve">Juvenil: </label><input id="cJuve" name="tJuve" type="text" size="10" maxlength="50"/>
+
+                <label for="cCama">Cama: </label><input id="cCama" name="tCama" type="text" size="10" maxlength="50"/>
+            </p>
+        </fieldset>
+        <p>
+            <input id="btEnvia" name="btEnvia" type="Button" value="Salvar"/>
+        </p>
+    </fieldset>
+</form>
+</body>
+</html>
