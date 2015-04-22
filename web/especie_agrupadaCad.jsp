@@ -32,17 +32,17 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "insert into equipamento (nome, observacoes) values ('"+nNome+"','"+nObs+"')";
+                sql = "insert into especie_agrupada (nome, observacoes) values ('"+nNome+"','"+nObs+"')";
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
                 stmt.execute();         
 
-                mensagem = "Equipamento Cadastrado com Sucesso";
+                mensagem = "Espécie Agrupada Cadastrada com Sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
-                mensagem = "Ocorreu um erro ao cadastrar o equipamento. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
+                mensagem = "Ocorreu um erro ao cadastrar a espécie agrupada. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
                 sqle.printStackTrace();          
         } 
     }        
@@ -53,13 +53,13 @@
 <html>
 <head lang="pt-br">
     <meta charset="UTF-8">
-    <title>Cadastro de Equipamento</title>
+    <title>Cadastro de Espécie Agrupada</title>
     <link rel="stylesheet" type="text/css" href="css/form.css"/>
 </head>
 <body>
-<form method="post" id="cadastro" action="equipamentoCad.jsp">
+<form method="post" id="cadastro" action="especie_agrupadaCad.jsp">
     <fieldset>
-        <legend>Equipamento</legend>        
+        <legend>Espécie Agrupada</legend>
       <p>
         <label for="cNome">Nome: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
       </p>
@@ -70,7 +70,7 @@
       <% out.println(mensagem);%>
       <p>
         <input class="botao-form" id="btEnvia" name="botao" type="Submit" value="Salvar"/> 
-     </p>
+      </p>
     </fieldset>
 </form>
 </body>
