@@ -16,7 +16,7 @@
      
     String nNome = request.getParameter("tNome");
     String nObs = request.getParameter("tObs");
-    String nEspecieAgrupada = request.getParameter("nEspecieAgrupada");
+    String nOrdem = request.getParameter("nOrdem");
     
     String botao = request.getParameter("botao");
 	
@@ -33,17 +33,17 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "insert into espatual (especie_agrupada_id, nome, observacoes) values ('"+nEspecieAgrupada+"','"+nNome+"','"+nObs+"')";
+                sql = "insert into familia (ordem_id, nome, observacoes) values ('"+nOrdem+"','"+nNome+"','"+nObs+"')";
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
                 stmt.execute();         
 
-                mensagem = "Espatual Cadastrada com Sucesso";
+                mensagem = "Família Cadastrada com Sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
-                mensagem = "Ocorreu um erro ao cadastrar espatual. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
+                mensagem = "Ocorreu um erro ao cadastrar família. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
                 sqle.printStackTrace();          
         } 
     }        
@@ -54,51 +54,50 @@
 <html>
 <head lang="pt-br">
     <meta charset="UTF-8">
-    <title>Cadastro de Espatual</title>
+    <title>Cadastro de Família</title>
     <link rel="stylesheet" type="text/css" href="css/form.css"/>
 </head>
 <body>
-<form method="post" id="cadastro" action="espatualCad.jsp">
+<form method="post" id="cadastro" action="familiaCad.jsp">
     <fieldset>
-        <legend>Espatual</legend>
-      <p>
-        <label for="especieAgrupadaId">Espécie Agrupada: </label>
-        <%
-                            ResultSet especieAgrupada = null;
+        <legend>Família</legend>
+        <p>
+           <label for="ordemId">Ordem: </label>
+           <%
+                            ResultSet ordem = null;
                             try {
                                     Connection connection = PosFactory.getConnection();
 
-                                    sql = "select id, nome from especie_agrupada";
+                                    sql = "select id, nome from ordem";
                                     
                                     PreparedStatement stmt = connection.prepareStatement(sql);
 
-                                    especieAgrupada = stmt.executeQuery(); 
+                                    ordem = stmt.executeQuery(); 
                                     
                                     connection.close();
                                 } catch (SQLException sqle) {
-                                    out.println("Ocorreu um erro ao cadastrar a esporigi. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                    out.println("Ocorreu um erro ao cadastrar a família. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                     sqle.printStackTrace();          
                             }
 
         %>
-        <select name="nEspecieAgrupada" id="especieAgrupadaId">
-        <%while(especieAgrupada.next()) { %>
-            <option value="<%out.print(especieAgrupada.getString("id"));%>"><%out.print(especieAgrupada.getString("nome"));%></option>
+        <select name="nOrdem" id="ordemId">
+        <%while(ordem.next()) { %>
+            <option value="<%out.print(ordem.getString("id"));%>"><%out.print(ordem.getString("nome"));%></option>
         <%}%>
-        </select>               
-      </p>   
-      <p>
-        <label for="cNome">Espatual: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
+        </select>             
+        </p>           
+       <p>
+           <label for="cNome">Família: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
+       </p>
+       <p>
+           <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
       </p>
+      <% out.println(mensagem);%>
       <p>
-        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
-      </p>
-    
-    <% out.println(mensagem);%>
-    <p>
-        <input class="botao-form" id="btEnvia" name="botao" type="Submit" value="Salvar"/> 
-    </p>  
-    </fieldset>
+      <input class="botao-form" id="btEnvia" name="botao" type="Submit" value="Salvar"/> 
+      </p>  
+      </fieldset>
 </form>
 </body>
 </html>
