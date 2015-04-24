@@ -94,7 +94,7 @@
                             try {
                                     Connection connection = PosFactory.getConnection();
 
-                                    sql = "select a.id as id, a.nome as aparelho, e.nome as equipamento from aparelho a left join equipamento_apar e on a.equipamento_apar_id = e.id order by aparelho";
+                                    sql = "select a.id as id, a.nome as aparelho, e.nome as equipamento from aparelho a left join equipamento e on a.equipamento_id = e.id order by aparelho";
                                     
                                     PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -102,7 +102,7 @@
                                     
                                     connection.close();
                                 } catch (SQLException sqle) {
-                                    out.println("Ocorreu um erro ao cadastrar o Abiótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                    out.println("Ocorreu um erro ao cadastrar abiótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                     sqle.printStackTrace();          
                             }
 
