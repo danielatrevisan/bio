@@ -1,12 +1,3 @@
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="conn.PosFactory"%>
-
-
 <%
 	//Inicializa Variáveis
     String sql = "";
@@ -16,7 +7,7 @@
      
     String nNome = request.getParameter("tNome");
     String nObs = request.getParameter("tObs");
-        
+    
     String botao = request.getParameter("botao");
 	
 	//Trata a Ação do Botão
@@ -45,24 +36,17 @@
                 mensagem = "Ocorreu um erro ao cadastrar ponto. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
                 sqle.printStackTrace();          
         } 
-    }        
+    }       
 %>
-<!DOCTYPE html>
-<html>
-<head lang="pt-br">
-    <meta charset="UTF-8">
-    <title>Cadastro de Ponto</title>
-    <link rel="stylesheet" type="text/css" href="css/form.css"/>
-</head>
-<body>
-<form method="post" id="cadastro" action="pontoCad.jsp">
+
+<form method="post" id="cadastro" action="index.jsp?url=pontoCad">
     <fieldset>
         <legend>Ponto da Coleta</legend>
       <p>
         <label for="cNome">Nome: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
       </p>
       <p>
-        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
+        <label for="cObs">Observa��es: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
       </p>
     <% out.println(mensagem);%>
     <p>
@@ -70,5 +54,3 @@
     </p>
     </fieldset>
 </form>
-</body>
-</html>

@@ -1,21 +1,11 @@
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="conn.PosFactory"%>
-
-
 <%
-	//Inicializa Vari√°veis
+	//Inicializa Vari·veis
     String sql = "";
 	String mensagem = "";
     
-    //Recebe dados do Formul√°rio
+    //Recebe dados do Formul·rio
      
-    String nAparelho = request.getParameter("nAparelho");
-    String nLocalColeta = request.getParameter("nLocalColeta");
+    String tLocalColeta = request.getParameter("tLocalColeta");
     String tPlanc = request.getParameter("tPlanc");
     String tDataColeta = request.getParameter("tDataColeta");
     String tHora = request.getParameter("tHora");
@@ -38,55 +28,115 @@
     String tJuve = request.getParameter("tJuve");
     String tCama = request.getParameter("tCama");
     String tRede = request.getParameter("tRede");
-    String tDensiovo = request.getParameter("tDensiovo");
-    String tDensilar = request.getParameter("tDensilar");
+    String tDensiovo = request.getParameter("tDensiOvo");
+    String tDensilar = request.getParameter("tDensiLar");
     String tDensiict = request.getParameter("tDensiict");
+    String tProjeto = request.getParameter("tProjeto");
+    String tAmostra = request.getParameter("tAmostra");
+    String tProfundidade = request.getParameter("tProfundidade");
+    
     
     String botao = request.getParameter("botao");
 	
-	//Trata a A√ß√£o do Bot√£o
+	//Trata a aÁ„o do Botao
     
     String acao = "";
+    
     if(botao==null){
         acao = "nada";
     }else{
         acao = request.getParameter("botao");
     }
-        
-    if(acao.equals("Salvar")) {
+    
+    
+    if(acao.equals("Salvar")) {        
         try {
-                Connection connection = PosFactory.getConnection();
+                 Connection connection = PosFactory.getConnection();
 
-                sql = "insert into abiotico (aparelho_id, local_coleta_id, planc, data_coleta, hora, margem, smf, ativ, vento, nebulosidade, chuva, tar, tagua, transp, ph, cond, odmg, volume, ovo, lar1, lar2, juve, cama, rede, densiovo, densilar, densiict)"
-                        + "          values ('" +nAparelho+"','" +nLocalColeta+"','" + tPlanc+"','" +tDataColeta+"','" + tHora+"','" + tMargem+"','" + tSMF+"','" + tAtividade+"','" + tVento+"','" + tNebulosidade+"','" + tChuva+"','" + tTar+"','" + tAgua+"','" + tTransp+"','" + tPh+"','" + tCond+"','" + tOdmg+"','" + tVolume+"','" + tOvo+"','" + tLar1+"','" + tLar2+"','" + tJuve+"','" + tCama+"','" + tRede+"','" + tDensiovo+"','" + tDensilar+"','" + tDensiict+"')";
+                sql = "insert into abiotico (local_coleta_id, planc, data_coleta, hora, margem, smf, ativ, vento, nebulosidade, chuva, tar, tagua, transp, ph, cond, odmg, volume, ovo, lar1, lar2, juve, cama, rede, densiovo, densilar, densiict, projeto_id, amostra, profundidade)"
+                        + "values ('" +tLocalColeta+"','" + tPlanc+"','" +tDataColeta+"','" + tHora+"','" + tMargem+"','" + tSMF+"','" + tAtividade+"','" + tVento+"','" + tNebulosidade+"','" + tChuva+"','" + tTar+"','" + tAgua+"','" + tTransp+"','" + tPh+"','" + tCond+"','" + tOdmg+"','" + tVolume+"','" + tOvo+"','" + tLar1+"','" + tLar2+"','" + tJuve+"','" + tCama+"','" + tRede+"','"+tDensiovo+"','"+tDensilar+"','"+tDensiict+"','"+tProjeto+"','"+tAmostra+"','"+tProfundidade+"')"; 
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
                 stmt.execute();         
 
-                mensagem = "Abi√≥tico Cadastrado com Sucesso";
+                mensagem = "AbiÛtico Cadastrado com Sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
-                mensagem = "Ocorreu um erro ao cadastrar o abi√≥tico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
+                mensagem = "Ocorreu um erro ao cadastrar o abiÛtico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
                 sqle.printStackTrace();          
         } 
     }        
 %>
-<!DOCTYPE html>
-<html>
-    <head lang="pt-br">
-        <meta charset="UTF-8">
-        <title>Cadastro de Abi√≥tico</title>
-        <link rel="stylesheet" type="text/css" href="css/form.css"/>
-    </head>
-    <body>
-        <form method="post" id="cadastro" action="abioticoCad.jsp">
+
+        <form method="post" id="tadastro" action="index.jsp?url=abioticoCad">
             <fieldset>
-                <legend>Dados Abi√≥ticos</legend>
+                <legend>Dados AbiÛticos</legend>
                 <input type="hidden" name="idAbiotico" value="">
                 <fieldset>
-                    <legend></legend>
+                    <p>
+                        <label for="tAmostra">Amostra: </label><input id="tAmostra" name="tAmostra" type="text" size="10" maxlength="50" READONLY/>
+                        <label for="tProjeto">Projeto: </label>                         
+                        <%
+                            ResultSet proj = null;
+                            try {
+                                    Connection connection = PosFactory.getConnection();
+
+                                    sql = "select id, nome from projeto order by projeto";
+                                    
+                                    PreparedStatement stmt = connection.prepareStatement(sql);
+
+                                    proj = stmt.executeQuery(); 
+                                    
+                                    connection.close();
+                                } catch (SQLException sqle) {
+                                    out.println("Ocorreu um erro ao cadastrar abiÛtico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                    sqle.printStackTrace();          
+                            }
+
+                        %>
+                        <select name="tProjeto" id="projetoId">
+                        <option></option>
+                        <%while(proj.next()) { %>
+                            <option value="<%out.print(proj.getString("id"));%>"><%out.print(proj.getString("nome"));%></option>
+                        <%}%>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="LocalColetaId">Local da Coleta: </label>
+                        <%
+                            ResultSet local = null;
+                            try {
+                                    Connection connection = PosFactory.getConnection();
+
+                                    sql = "select id, nome, sigla from local_coleta order by nome";
+                                    
+                                    PreparedStatement stmt = connection.prepareStatement(sql);
+
+                                    local = stmt.executeQuery();
+                                    
+                                    connection.close();
+                                } catch (SQLException sqle) {
+                                    out.println("Ocorreu um erro ao cadastrar o AbiÛtico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                    sqle.printStackTrace();          
+                            }
+
+                        %>
+
+                        <select name="tLocalColeta" id="localColetaId">
+                            <option></option>
+                            <%while(local.next()) { %>
+                                <option value="<%out.print(local.getString("id"));%>"><%out.print(local.getString("nome"));%> - <%out.print(local.getString("sigla"));%></option>
+                            <%}%>
+                        </select>
+                        
+                        <label for="DataColeta">Data: </label><input id="tDataColeta" name="tDataColeta" type="date"/>
+                        <label for="tHora">Hora: </label><input id="tHora" name="tHora" type="text" size="10" maxlength="50"/>
+                    </p>
+                </fieldset>
+                <fieldset>
+                    
                     <p>
                         <label for="aparelhoId">Aparelho: </label>
                         <%
@@ -102,118 +152,69 @@
                                     
                                     connection.close();
                                 } catch (SQLException sqle) {
-                                    out.println("Ocorreu um erro ao cadastrar abi√≥tico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                    out.println("Ocorreu um erro ao cadastrar abiÛtico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                     sqle.printStackTrace();          
                             }
 
                         %>
-                        <select name="nAparelho" id="aparelhoId">
+                        <select name="tAparelho" id="aparelhoId">
+                        <option></option>
                         <%while(aparelho.next()) { %>
-                            <option value="<%out.print(aparelho.getString("id"));%>"><%out.print(aparelho.getString("aparelho"));%>-<%out.print(aparelho.getString("equipamento"));%></option>
+                            <option value="<%out.print(aparelho.getString("id"));%>"><%out.print(aparelho.getString("aparelho"));%> - <%out.print(aparelho.getString("equipamento"));%></option>
                         <%}%>
                         </select>
-                        
-                        <label for="LocalColetaId">Local da Coleta: </label>
-                        <%
-                            ResultSet local = null;
-                            try {
-                                    Connection connection = PosFactory.getConnection();
-
-                                    sql = "select id, nome, sigla from local_coleta order by nome";
-                                    
-                                    PreparedStatement stmt = connection.prepareStatement(sql);
-
-                                    local = stmt.executeQuery();
-                                    
-                                    connection.close();
-                                } catch (SQLException sqle) {
-                                    out.println("Ocorreu um erro ao cadastrar o Abi√≥tico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
-                                    sqle.printStackTrace();          
-                            }
-
-                        %>
-
-                        <select name="nLocalColeta" id="localColetaId">
-                            <%while(local.next()) { %>
-                                <option value="<%out.print(local.getString("id"));%>"><%out.print(local.getString("nome"));%>-<%out.print(local.getString("sigla"));%></option>
-                            <%}%>
-                        </select>
-                        
-                        <label for="DataColeta">Data da Coleta: </label><input id="cDataColeta" name="tDataColeta" type="date"/>
-                        
+                        <label for="tPlanc">Planc: </label><input id="tPlanc" name="tPlanc" type="text" size="10" maxlength="50"/>
+                        <label for="tRede">Rede: </label><input id="tRede" name="tRede" type="text" size="10" maxlength="50"/>
                     </p>
                 </fieldset>
                 <fieldset>
-                    <legend></legend>
+                    
                     <p>
-                        <label for="cPlanc">Planc: </label><input id="cPlanc" name="tPlanc" type="text" size="10" maxlength="50"/>
-
-                        <label for="cRede">Rede: </label><input id="cRede" name="tRede" type="text" size="10" maxlength="50"/>
+                        <label for="tMargem">Margem: </label><input id="tMargem" name="tMargem" type="text" size="10" maxlength="50"/>
+                        <label for="tSMF">SMF: </label><input id="tSMF" name="tSMF" type="text" size="10" maxlength="50"/>
+                        <label for="tProfundidade">Profundidade: </label><input id="tProfundidade" name="tProfundidade" type="text" size="10" maxlength="50"/>
                     </p>
                 </fieldset>
                 <fieldset>
-                    <legend></legend>
+                    
                     <p>
-                        <label for="cMargem">Margem: </label><input id="cMargem" name="tMargem" type="text" size="10" maxlength="50"/>
-
-                        <label for="cSMF">SMF: </label><input id="cSMF" name="tSMF" type="text" size="10" maxlength="50"/>
+                        <label for="tAtividade">Atividade: </label><input id="tAtividade" name="tAtividade" type="text" size="10" maxlength="50"/>
+                        <label for="tVento">Vento: </label><input id="tVento" name="tVento" type="text" size="10" maxlength="50"/>
+                        <label for="tNebulosidade">Nebulosidade: </label><input id="tNebulosidade" name="tNebulosidade" type="text" size="10" maxlength="50"/>
+                    </p>
+                    <p>
+                        <label for="tchuva">Chuva: </label><input id="tChuva" name="tChuva" type="text" size="10" maxlength="50"/>
+                        <label for="tTar">Temperatura do Ar: </label><input id="tTar" name="tTar" type="text" size="10" maxlength="50"/>
+                        <label for="tTagua">Temperatura da ¡gua: </label><input id="tTagua" name="tAgua" type="text" size="10" maxlength="50"/>
+                    </p>
+                    <p>
+                        <label for="tTransp">TransparÍncia: </label><input id="tTransp" name="tTransp" type="text" size="10" maxlength="50"/>
+                        <label for="tPh">PH: </label><input id="tPh" name="tPh" type="text" size="10" maxlength="50"/>
+                        <label for="tCond">CondiÁ„o: </label><input id="tCond" name="tCond" type="text" size="10" maxlength="50"/>
+                    </p>
+                    <p>
+                        <label for="tOdmg">OxigÍnio Dissolvido: </label><input id="tOdmg" name="tOdmg" type="text" size="10" maxlength="50"/>
+                        <label for="tVolume">Volume: </label><input id="tVolume" name="tVolume" type="text" size="10" maxlength="50"/>
                     </p>
                 </fieldset>
                 <fieldset>
-                    <legend></legend>
+                    
                     <p>
-                        <label for="cAtividade">Atividade: </label><input id="cAtividade" name="tAtividade" type="text" size="10" maxlength="50"/>
-
-                        <label for="cVento">Vento: </label><input id="cVento" name="tVento" type="text" size="10" maxlength="50"/>
-
-                        <label for="cNebulosidade">Nebulosidade: </label><input id="cNebulosidade" name="tNebulosidade" type="text" size="10" maxlength="50"/>
+                        <label for="tOvo">Ovo: </label><input id="tOvo" name="tOvo" type="text" size="10" maxlength="50"/>
+                        <label for="tLar1">Larva 1: </label><input id="tLar1" name="tLar1" type="text" size="10" maxlength="50"/>
+                        <label for="tLar2">Larva 2: </label><input id="tLar2" name="tLar2" type="text" size="10" maxlength="50"/>
                     </p>
                     <p>
-                        <label for="cchuva">Chuva: </label><input id="cChuva" name="tChuva" type="text" size="10" maxlength="50"/>
-
-                        <label for="cTar">Temperatura do Ar: </label><input id="cTar" name="tTar" type="text" size="10" maxlength="50"/>
-
-                        <label for="cTagua">Temperatura da √Ågua: </label><input id="cTagua" name="tAgua" type="text" size="10" maxlength="50"/>
-                    </p>
-                    <p>
-                        <label for="cTransp">Transpar√™ncia: </label><input id="cTransp" name="tTransp" type="text" size="10" maxlength="50"/>
-
-                        <label for="cPh">PH: </label><input id="cPh" name="tPh" type="text" size="10" maxlength="50"/>
-
-                        <label for="cCond">Condi√ß√£o: </label><input id="cCond" name="tCond" type="text" size="10" maxlength="50"/>
-                    </p>
-                    <p>
-                        <label for="cOdmg">Oxig√™nio Dissolvido: </label><input id="cOdmg" name="tOdmg" type="text" size="10" maxlength="50"/>
-
-                        <label for="cVolume">Volume: </label><input id="cVolume" name="tVolume" type="text" size="10" maxlength="50"/>
+                        <label for="tJuve">Juvenil: </label><input id="tJuve" name="tJuve" type="text" size="10" maxlength="50"/>
+                        <label for="tCama">Cama: </label><input id="tCama" name="tCama" type="text" size="10" maxlength="50"/>                        
+                        <label for="tDensiOvo">Densidade do Ovo: </label><input id="tDensiOvo" name="tDensiOvo" type="text" size="10" maxlength="50"/>                        
+                        <label for="tDensiLar">Densidade da Larva: </label><input id="tDensiLar" name="tDensiLar" type="text" size="10" maxlength="50"/>                        
+                        <label for="tDensiict">Densiict: </label><input id="tDensiict" name="tDensiict" type="text" size="10" maxlength="50"/>
                     </p>
                 </fieldset>
-                <fieldset>
-                    <legend></legend>
-                    <p>
-                        <label for="cOvo">Ovo: </label><input id="cOvo" name="tOvo" type="text" size="10" maxlength="50"/>
-
-                        <label for="cLar1">Larva 1: </label><input id="cLar1" name="tLar1" type="text" size="10" maxlength="50"/>
-
-                        <label for="cLar2">Larva 2: </label><input id="cLar2" name="tLar2" type="text" size="10" maxlength="50"/>
-                    </p>
-                    <p>
-                        <label for="cJuve">Juvenil: </label><input id="cJuve" name="tJuve" type="text" size="10" maxlength="50"/>
-
-                        <label for="cCama">Cama: </label><input id="cCama" name="tCama" type="text" size="10" maxlength="50"/>
-                        
-                        <label for="cDensiOvo">Densidade do Ovo: </label><input id="cDensiOvo" name="tDensiOvo" type="text" size="10" maxlength="50"/>
-                        
-                        <label for="cDensiLar">Densidade da Larva: </label><input id="cDensiLar" name="tDensiLar" type="text" size="10" maxlength="50"/>
-                        
-                        <label for="cDensiict">Densiict: </label><input id="cDensiict" name="tDensiict" type="text" size="10" maxlength="50"/>
-                    </p>
-                </fieldset>
-                        <% out.println(mensagem);%>
+                <% out.println(mensagem);%>
                 <p>
                     <input class="botao-form" id="btEnvia" name="botao" type="Submit" value="Salvar"/> 
                 </p>
             </fieldset>
         </form>
-    </body>
-</html>

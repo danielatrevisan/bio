@@ -1,12 +1,3 @@
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="conn.PosFactory"%>
-
-
 <%
 	//Inicializa Variáveis
     String sql = "";
@@ -49,16 +40,7 @@
     }        
 %>
 
-
-<!DOCTYPE html>
-<html>
-<head lang="pt-br">
-    <meta charset="UTF-8">
-    <title>Cadastro de Esporigi</title>
-    <link rel="stylesheet" type="text/css" href="css/form.css"/>
-</head>
-<body>
-<form method="post" id="cadastro" action="esporigiCad.jsp">
+<form method="post" id="cadastro" action="index.jsp?url=esporigiCad">
     <fieldset>
         <legend>Esporigi</legend>
       <p>
@@ -100,5 +82,3 @@
     </p>  
     </fieldset>
 </form>
-</body>
-</html>

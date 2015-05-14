@@ -57,7 +57,7 @@
     <link rel="stylesheet" type="text/css" href="css/form.css"/>
 </head>
 <body>
-<form method="post" id="cadastro" action="equipamentoCad.jsp">
+<form method="post" id="cadastro" action="index.jsp?url=equipamentoCad">
     <fieldset>
         <legend>Equipamento</legend>        
       <p>

@@ -1,21 +1,12 @@
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="conn.PosFactory"%>
-
-
 <%
 	//Inicializa Variáveis
     String sql = "";
 	String mensagem = "";
     
-    //Recebe dados do Formulário
+    //Recebe dados do Formul�rio
     
     String nEquipamento = request.getParameter("nEquipamento");
-    String cNome = request.getParameter("cNome");    
+    String cNome = request.getParameter("tNome");    
     String nObs = request.getParameter("tObs");
     
     String botao = request.getParameter("botao");
@@ -49,15 +40,7 @@
     }        
 %>
 
-<!DOCTYPE html>
-<html>
-<head lang="pt-br">
-    <meta charset="UTF-8">
-    <title>Cadastro de Aparelho</title>
-    <link rel="stylesheet" type="text/css" href="css/form.css"/>
-</head>
-<body>
-<form method="post" id="cadastro" action="aparelhoCad.jsp">
+<form method="post" id="cadastro" action="index.jsp?url=aparelhoCad">
     <fieldset>
         <legend>Aparelho</legend>
 
@@ -94,11 +77,10 @@
       <p>
         <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
       </p>
+      
       <% out.println(mensagem);%>
       <p>
         <input class="botao-form" id="btEnvia" name="botao" type="Submit" value="Salvar"/> 
       </p>  
     </fieldset>
 </form>
-</body>
-</html>
