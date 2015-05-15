@@ -53,12 +53,14 @@
             	
             	<%if(link.equals("abioticoCad")){%>
 				 	<%@include file="abioticoCad.jsp"%>
+                <%if(link.equals("abioticoPes")){%>
+				 	<%@include file="abioticoPes.jsp"%>
 				<%}%>
-                <%if(link.equals("abioticoAlt")){%>
-				 	<%@include file="abioticoAlt.jsp"%>
-				<%}%>
-                <%if(link.equals("abioticoDel")){%>
-				 	<%@include file="abioticoDel.jsp"%>
+                <%/*if(link.equals("abioticoAlt")){*/%> 
+				 	<%/*@include file="abioticoAlt.jsp"*/%>
+				<%/*}*/%>
+                <%/*if(link.equals("abioticoDel")){*/%>
+				 	<%/*@include file="abioticoDel.jsp"*/%>
 				<%}%>
                 <%if(link.equals("ambienteCad")){%>
 				 	<%@include file="ambienteCad.jsp"%>
