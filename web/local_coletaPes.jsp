@@ -23,15 +23,18 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "select * from local_coleta where upper(nome) like upper('%"+cNome+"%')";
+                sql = "select id, nome, coalesce(sigla, '') as sigla, coalesce(municipio, '') as municipio from local_coleta where upper(nome) like upper('%"+cNome+"%') order by nome";
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);
+                mensagem = "<table> <tr> <td><b>Local</b></td> <td><b>Sigla</b></td> <td><b>Município</b></td> </tr>";
 				
 		local = stmt.executeQuery(); 
 		  while(local.next()) {
-                    mensagem = mensagem + "<p>"+local.getString("nome")+" - "+local.getString("observacoes")+" "+"<a href='index.jsp?url=localAlt&idLocal="+local.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=localDel&idLocal="+local.getString("id")+"'>Excluir</a></p>";
+                    mensagem = mensagem + "<tr> <td>"+local.getString("nome")+" </td> <td> "+local.getString("sigla")+" </td> <td> "+local.getString("municipio")+" </td> <td> "+"</td> <td> <a href='index.jsp?url=localAlt&idLocal="+local.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=localDel&idLocal="+local.getString("id")+"'>Excluir</a></p> </td> </tr>";
+                    
                 }
-                
+                  
+                mensagem = mensagem + "</table>";                
                 connection.close();
             } catch (SQLException sqle) {
                 mensagem = "Ocorreu um erro ao pesquisar local da coleta. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;

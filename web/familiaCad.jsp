@@ -31,11 +31,11 @@
 
                 stmt.execute();         
 
-                mensagem = "Família Cadastrada com Sucesso";
+                mensagem = "Fam�lia Cadastrada com Sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
-                mensagem = "Ocorreu um erro ao cadastrar família. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
+                mensagem = "Ocorreu um erro ao cadastrar fam�lia. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
                 sqle.printStackTrace();
         } 
     }        
@@ -43,7 +43,7 @@
 
 <form method="post" id="cadastro" action="index.jsp?url=familiaCad">
     <fieldset>
-        <legend>Família</legend>
+        <legend>Fam&iacute;lia</legend>
         <p>
            <label for="ordemId">Ordem: </label>
            <%
@@ -59,7 +59,7 @@
                                     
                                     connection.close();
                                 } catch (SQLException sqle) {
-                                    out.println("Ocorreu um erro ao cadastrar a família. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                    out.println("Ocorreu um erro ao cadastrar a fam�lia. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                     sqle.printStackTrace();          
                             }
 
@@ -71,7 +71,7 @@
         </select>             
         </p>           
        <p>
-           <label for="cNome">Família: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
+           <label for="cNome">Fam&iacute;lia: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
        </p>
        <p>
            <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>

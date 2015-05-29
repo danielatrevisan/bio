@@ -24,15 +24,17 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "select * from familia where upper(nome) like upper('%"+cNome+"%')";
+                sql = "select f.id, f.nome, coalesce(o.nome, '') as ordem from familia f left join ordem o on f.ordem_id = o.id where upper(f.nome) like upper('%"+cNome+"%') order by f.nome";
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);
+                mensagem = "<table> <tr> <td><b>Família</b></td> <td><b>Ordem</b></td> </tr>";
 				
-		familia = stmt.executeQuery(); 
+		familia = stmt.executeQuery();
 		  while(familia.next()) {
-                    mensagem = mensagem + "<p>"+familia.getString("nome")+" - "+familia.getString("observacoes")+" "+"<a href='index.jsp?url=familiaAlt&idFamilia="+familia.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=familiaDel&idFamilia="+familia.getString("id")+"'>Excluir</a></p>";
+                    mensagem = mensagem + "<tr> <td>"+familia.getString("nome")+" </td> <td> "+familia.getString("ordem")+" </td> <td> "+"</td> <td> <a href='index.jsp?url=familiaAlt&idFamilia="+familia.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=familiaDel&idFamilia="+familia.getString("id")+"'>Excluir</a></p> </td> </tr>";                    
                 }
                 
+                mensagem = mensagem + "</table>";
                 connection.close();
             } catch (SQLException sqle) {
                 mensagem = "Ocorreu um erro ao pesquisar estádio de maturação. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;

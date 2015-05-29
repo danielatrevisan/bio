@@ -23,15 +23,18 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "select * from genero_especie where upper(nome) like upper('%"+cNome+"%')";
+                sql = "select * from genero_especie where upper(nome) like upper('%"+cNome+"%') order by nome";
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);
+                mensagem = "<table> <tr> <td><b>Gênero/Espécie</b></td>";
 				
 		genero_especie = stmt.executeQuery(); 
 		  while(genero_especie.next()) {
-                    mensagem = mensagem + "<p>"+genero_especie.getString("nome")+" - "+genero_especie.getString("observacoes")+" "+"<a href='index.jsp?url=genero_especieAlt&idGenero_especie="+genero_especie.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=genero_especieDel&idGenero_especie="+genero_especie.getString("id")+"'>Excluir</a></p>";
+                    mensagem = mensagem + "<tr> <td>"+genero_especie.getString("nome")+" </td> <td> "+"</td> <td> <a href='index.jsp?url=genero_especieAlt&idGenero_especie="+genero_especie.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=genero_especieDel&idGenero_especie="+genero_especie.getString("id")+"'>Excluir</a></p>";
+                    
                 }
-                
+                  
+                mensagem = mensagem + "</table>";                
                 connection.close();
             } catch (SQLException sqle) {
                 mensagem = "Ocorreu um erro ao pesquisar gênero/espécie. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;

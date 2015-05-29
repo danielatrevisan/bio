@@ -26,12 +26,15 @@
                 sql = "select * from migraped where upper(nome) like upper('%"+cNome+"%')";
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);
+                mensagem = "<table> <tr> <td><b>Migraped</b></td> </tr>";
 				
 		migraped = stmt.executeQuery(); 
 		  while(migraped.next()) {
-                    mensagem = mensagem + "<p>"+migraped.getString("nome")+" - "+migraped.getString("observacoes")+" "+"<a href='index.jsp?url=migrapedAlt&idMigraped="+migraped.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=migrapedDel&idMigraped="+migraped.getString("id")+"'>Excluir</a></p>";
+                    mensagem = mensagem + "<tr> <td>"+migraped.getString("nome")+" </td> <td> "+"</td> <td> <a href='index.jsp?url=migrapedAlt&idMigraped="+migraped.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=migrapedDel&idMigraped="+migraped.getString("id")+"'>Excluir</a></p> </td> </tr>";
+                    
                 }
                 
+                mensagem = mensagem + "</table>";
                 connection.close();
             } catch (SQLException sqle) {
                 mensagem = "Ocorreu um erro ao pesquisar MIGRAPED. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;

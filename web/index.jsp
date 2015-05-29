@@ -51,8 +51,10 @@
             <!-- secundario -->
             <div id="corpo">
             	
+              
             	<%if(link.equals("abioticoCad")){%>
 				 	<%@include file="abioticoCad.jsp"%>
+                                <%}%>
                 <%if(link.equals("abioticoPes")){%>
 				 	<%@include file="abioticoPes.jsp"%>
 				<%}%>
@@ -61,7 +63,7 @@
 				<%/*}*/%>
                 <%/*if(link.equals("abioticoDel")){*/%>
 				 	<%/*@include file="abioticoDel.jsp"*/%>
-				<%}%>
+				<%/*}*/%>
                 <%if(link.equals("ambienteCad")){%>
 				 	<%@include file="ambienteCad.jsp"%>
 				<%}%>
@@ -184,6 +186,9 @@
 				<%}%>
                 <%if(link.equals("projetoPes")){%>
 				 	<%@include file="projetoPes.jsp"%>
+				<%}%>
+                <%if(link.equals("mineracao")){%>
+				 	<%@include file="mineracao.jsp"%>
 				<%}%>
             	
             </div>

@@ -5,12 +5,12 @@
     
     //Recebe dados do Formulário
      
-    String tLocalColeta = request.getParameter("tLocalColeta");   
+    String tLocalColeta = request.getParameter("tLocalColeta");  
     String tDataColeta = request.getParameter("tDataColeta");
-    String tProjeto = request.getParameter("tProjeto");
-    String tAmostra = request.getParameter("tAmostra");  
+    String tProjeto = request.getParameter("tProjeto");    
     
     String botao = request.getParameter("botao");
+    
 	
 	//Trata a ação do Botao
     
@@ -25,20 +25,51 @@
     ResultSet abiotico = null;    
     if(acao.equals("Pesquisar")) {
         try {
-                Connection connection = PosFactory.getConnection();
-
-                sql = "select * from abiotico where upper(projeto) = upper('%"+tLocalColeta+"%') or upper(data_coleta) =  upper('%"+tDataColeta+"%') or upper(amostra) = upper('%"+tProjeto+"%') or upper(local) = upper('%"+tAmostra+"%'))"; 
-                   
-                PreparedStatement stmt = connection.prepareStatement(sql);
-				
-		abiotico = stmt.executeQuery(); 
-		  while(abiotico.next()) {
-                    mensagem = mensagem + "<p>"+abiotico.getString("nome")+" - "+abiotico.getString("observacoes")+" "+"<a href='index.jsp?url=abioticoAlt&idAbiotico="+abiotico.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=abioticoDel&idAbiotico="+abiotico.getString("id")+"'>Excluir</a></p>";
-                }
+                Connection connection = PosFactory.getConnection();      
                 
+                //Pesquis por Projeto e Data
+                if((tLocalColeta=="")&&(!(tDataColeta.equals("")))&&(tProjeto!="")){
+                    sql = "select a.id, p.nome as projeto, l.nome as local, l.sigla, to_char(a.data_coleta, 'DD/MM/YYYY') as data_coleta as data_coleta, coalesce(a.smf, '') as smf from abiotico a left join projeto p on a.projeto_id = p.id left join local_coleta l on a.local_coleta_id = l.id where projeto_id = '"+tProjeto+"' and data_coleta = '"+tDataColeta+"'";
+                }
+                //Pesquis por Projeto e Local
+                if((tLocalColeta!="")&&(tDataColeta.equals(""))&&(tProjeto!="")){
+                    sql = "select a.id, p.nome as projeto, l.nome as local, l.sigla, to_char(a.data_coleta, 'DD/MM/YYYY') as data_coleta, coalesce(a.smf, '') as smf from abiotico a left join projeto p on a.projeto_id = p.id left join local_coleta l on a.local_coleta_id = l.id where projeto_id = '"+tProjeto+"' and local_coleta_id =  '"+tLocalColeta+"'";
+                }
+                //Pesquis por Local e data
+                if((tLocalColeta!="")&&(!(tDataColeta.equals("")))&&(tProjeto=="")){
+                    sql = "select a.id, p.nome as projeto, l.nome as local, l.sigla, to_char(a.data_coleta, 'DD/MM/YYYY') as data_coleta, coalesce(a.smf, '') as smf from abiotico a left join projeto p on a.projeto_id = p.id left join local_coleta l on a.local_coleta_id = l.id where local_coleta_id =  '"+tLocalColeta+"' and data_coleta =  '"+tDataColeta+"'";
+                }
+                //Pesquis por Projeto Local e data
+                if((tLocalColeta!="")&&(!(tDataColeta.equals("")))&&(tProjeto!="")){
+                    sql = "select a.id, p.nome as projeto, l.nome as local, l.sigla, to_char(a.data_coleta, 'DD/MM/YYYY') as data_coleta, coalesce(a.smf, '') as smf from abiotico a left join projeto p on a.projeto_id = p.id left join local_coleta l on a.local_coleta_id = l.id where projeto_id = '"+tProjeto+"' and local_coleta_id =  '"+tLocalColeta+"' and data_coleta =  '"+tDataColeta+"'";
+                }
+                //Pesquis por Projeto
+                if((tLocalColeta=="")&&(tDataColeta.equals(""))&&(tProjeto!="")){
+                    sql = "select a.id, p.nome as projeto, l.nome as local, l.sigla, to_char(a.data_coleta, 'DD/MM/YYYY') as data_coleta, coalesce(a.smf, '') as smf from abiotico a left join projeto p on a.projeto_id = p.id left join local_coleta l on a.local_coleta_id = l.id where projeto_id = '"+tProjeto+"'";
+                }
+                 //Pesquis por Local
+                if((tLocalColeta!="")&&(tDataColeta.equals(""))&&(tProjeto=="")){
+                    sql = "select a.id, p.nome as projeto, l.nome as local, l.sigla, to_char(a.data_coleta, 'DD/MM/YYYY') as data_coleta,  coalesce(a.smf, '') as smf from abiotico a left join projeto p on a.projeto_id = p.id left join local_coleta l on a.local_coleta_id = l.id where local_coleta_id = '"+tLocalColeta+"'";
+                }
+                 //Pesquis por Data
+                if((tLocalColeta=="")&&(!(tDataColeta.equals("")))&&(tProjeto=="")){
+                    sql = "select a.id, p.nome as projeto, l.nome as local, l.sigla, to_char(a.data_coleta, 'DD/MM/YYYY') as data_coleta, coalesce(a.smf, '') as smf from abiotico a left join projeto p on a.projeto_id = p.id left join local_coleta l on a.local_coleta_id = l.id where data_coleta =  '"+tDataColeta+"'";
+                }
+               
+                PreparedStatement stmt = connection.prepareStatement(sql);
+		
+                mensagem = "<table> <tr> <td><b>Projeto</b></td> <td><b>Local</b></td> <td><b>Sigla</b></td> <td><b>Data da Coleta</b></td> <td><b>SMF</b></td> <td></td> </tr>";
+                
+                        
+                
+                  abiotico = stmt.executeQuery(); 
+		  while(abiotico.next()) {
+                    mensagem = mensagem + "<tr> <td>"+abiotico.getString("id")+" </td> <td>"+abiotico.getString("projeto")+" </td> <td> "+abiotico.getString("local")+"</td> <td> "+abiotico.getString("sigla")+"</td> <td> "+abiotico.getString("data_coleta")+"</td> <td> "+abiotico.getString("smf")+"</td> <td> <a href='index.jsp?url=abioticoAlt&idAbiotico="+abiotico.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=abioticoDel&idAbiotico="+abiotico.getString("id")+"'>Excluir</a></p></td> </tr>";                    
+                }
+                mensagem = mensagem + "</table>";
                 connection.close();
             } catch (SQLException sqle) {
-                mensagem = "Ocorreu um erro ao pesquisar o abiótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
+                mensagem = "Preencha ao menos um campo do formulário<br/>";
                 sqle.printStackTrace();          
         } 
     }        
@@ -49,7 +80,9 @@
                 <legend>Dados Abióticos</legend>                
                 <fieldset>
                     <p>
-                        <label for="tAmostra">Amostra: </label><input id="tAmostra" name="tAmostra" type="text" size="10" maxlength="50"/>
+                        <input class="botao-form" id="btEnvia" name="botao" type="Submit" value="Pesquisar"/> 
+                    </p>
+                    <p>                        
                         <label for="tProjeto">Projeto: </label>                         
                         <%
                             ResultSet proj = null;
@@ -64,7 +97,7 @@
                                     
                                     connection.close();
                                 } catch (SQLException sqle) {
-                                    out.println("Ocorreu um erro ao cadastrar abiótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                    out.println("Ocorreu um erro ao pesquisar abiótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                     sqle.printStackTrace();          
                             }
 
@@ -91,21 +124,26 @@
                                     
                                     connection.close();
                                 } catch (SQLException sqle) {
-                                    out.println("Ocorreu um erro ao cadastrar o Abiótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                    out.println("Ocorreu um erro ao pesquisar o Abiótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                     sqle.printStackTrace();          
                             }
 
                         %>
-
                         <select name="tLocalColeta" id="localColetaId">
                             <option></option>
                             <%while(local.next()) { %>
                                 <option value="<%out.print(local.getString("id"));%>"><%out.print(local.getString("nome"));%> - <%out.print(local.getString("sigla"));%></option>
                             <%}%>
                         </select>
-                        
+                    </p>
+                    <p>                        
                         <label for="DataColeta">Data: </label><input id="tDataColeta" name="tDataColeta" type="date"/>
                         
                     </p>
+                    
+        <% out.println(mensagem);%>
+        <p>
+            <input class="botao-form" id="btEnvia" name="botao" type="Submit" value="Pesquisar"/> 
+        </p>
                 </fieldset>                
         </form>

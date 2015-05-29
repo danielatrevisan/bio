@@ -23,15 +23,18 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "select * from aparelho where upper(nome) like upper('%"+cNome+"%')";
+                sql = "select a.id, a.nome as aparelho, e.nome as equipamento from aparelho a left join equipamento e on a.equipamento_id = e.id where upper(a.nome) like upper('%"+cNome+"%')";
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);
+                
+                mensagem = "<table> <tr> <td><b>Aparelho</b></td> <td><b>Equipamento</b></td> </tr>";
 				
 		aparelho = stmt.executeQuery(); 
 		  while(aparelho.next()) {
-                    mensagem = mensagem + "<p>"+aparelho.getString("nome")+" - "+aparelho.getString("observacoes")+" "+"<a href='index.jsp?url=aparelhoAlt&idAparelho="+aparelho.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=aparelhoDel&idAparelho="+aparelho.getString("id")+"'>Excluir</a></p>";
+                    mensagem = mensagem + "<tr> <td>"+aparelho.getString("aparelho")+" </td> <td> "+aparelho.getString("equipamento")+" </td> <td> "+"</td> <td> <a href='index.jsp?url=aparelhoAlt&idAparelho="+aparelho.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=aparelhoDel&idAparelho="+aparelho.getString("id")+"'>Excluir</a></p> </td> </tr>";
                 }
                 
+                mensagem = mensagem + "</table>";
                 connection.close();
             } catch (SQLException sqle) {
                 mensagem = "Ocorreu um erro ao pesquisar aparelho. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;

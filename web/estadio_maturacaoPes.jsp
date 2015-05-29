@@ -23,15 +23,17 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "select * from estadio_maturacao where upper(nome) like upper('%"+cNome+"%')";
+                sql = "select * from estadio_maturacao where upper(nome) like upper('%"+cNome+"%') order by nome";
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);
+                mensagem = "<table> <td><b>Estádio da Maturação</b></td> </tr>";
 				
 		estadio_maturacao = stmt.executeQuery(); 
 		  while(estadio_maturacao.next()) {
-                    mensagem = mensagem + "<p>"+estadio_maturacao.getString("nome")+" - "+estadio_maturacao.getString("observacoes")+" "+"<a href='index.jsp?url=estadio_maturacaoAlt&idEstadio_maturacao="+estadio_maturacao.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=estadio_maturacaoDel&idEstadio_maturacao="+estadio_maturacao.getString("id")+"'>Excluir</a></p>";
+                    mensagem = mensagem + "<tr> <td>"+estadio_maturacao.getString("nome")+" </td> <td> "+"</td> <td> <a href='index.jsp?url=estadio_maturacaoAlt&idEstadio_maturacao="+estadio_maturacao.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=estadio_maturacaoDel&idEstadio_maturacao="+estadio_maturacao.getString("id")+"'>Excluir</a></p> </td> </tr>";                               
                 }
                 
+                mensagem = mensagem + "</table>";
                 connection.close();
             } catch (SQLException sqle) {
                 mensagem = "Ocorreu um erro ao pesquisar estádio de maturação. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;

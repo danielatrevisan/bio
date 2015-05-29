@@ -26,12 +26,15 @@
                 sql = "select * from projeto where upper(nome) like upper('%"+cNome+"%')";
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);
+                mensagem = "<table> <tr> <td><b>Projeto</b></td> </tr>";
 				
 		projeto = stmt.executeQuery(); 
 		  while(projeto.next()) {
-                    mensagem = mensagem + "<p>"+projeto.getString("nome")+" - "+projeto.getString("observacoes")+" "+"<a href='index.jsp?url=projetoAlt&idProjeto="+projeto.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=projetoDel&idProjeto="+projeto.getString("id")+"'>Excluir</a></p>";
+                    mensagem = mensagem + "<tr> <td>"+projeto.getString("nome")+" </td> <td> "+"</td> <td> <a href='index.jsp?url=projetoAlt&idProjeto="+projeto.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=projetoDel&idProjeto="+projeto.getString("id")+"'>Excluir</a></p> </td> </tr>";
+                    
                 }
-                
+                  
+                mensagem = mensagem + "</table>";                
                 connection.close();
             } catch (SQLException sqle) {
                 mensagem = "Ocorreu um erro ao pesquisar projeto. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;

@@ -22,15 +22,18 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "select * from espatual where upper(nome) like upper('%"+cNome+"%')";
+                sql = "select e.id, e.nome, ea.nome as spgroup from espatual e left join especie_agrupada ea on e.especie_agrupada_id = ea.id where upper(e.nome) like upper('%"+cNome+"%')";
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);
+                
+                mensagem = "<table> <tr> <td><b>Espatual</b></td> <td><b>Espécie Agrupada</b></td> </tr>";
 				
 		espatual = stmt.executeQuery(); 
 		  while(espatual.next()) {
-                    mensagem = mensagem + "<p>"+espatual.getString("nome")+" - "+espatual.getString("observacoes")+" "+"<a href='index.jsp?url=espatualAlt&idEspatual="+espatual.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=espatualDel&idEspatual="+espatual.getString("id")+"'>Excluir</a></p>";
+                    mensagem = mensagem + "<tr> <td>"+espatual.getString("nome")+" </td> <td> "+espatual.getString("spgroup")+" </td> <td> "+"</td> <td> <a href='index.jsp?url=espatualAlt&idEspatual="+espatual.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=espatualDel&idEspatual="+espatual.getString("id")+"'>Excluir</a></p> </td> </tr>";
+                    
                 }
-                
+                mensagem = mensagem + "</table>";
                 connection.close();
             } catch (SQLException sqle) {
                 mensagem = "Ocorreu um erro ao pesquisar espatual. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;

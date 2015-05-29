@@ -25,12 +25,16 @@
                 sql = "select * from ambiente where upper(nome) like upper('%"+nNome+"%')";
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);
+                
+                mensagem = "<table> <tr> <td><b>Ambiente</b></td> </tr>";
 				
 		ambiente = stmt.executeQuery(); 
 		  while(ambiente.next()) {
-                    mensagem = mensagem + "<p>"+ambiente.getString("nome")+" - "+ambiente.getString("observacoes")+" "+"<a href='index.jsp?url=ambienteAlt&idAmbiente="+ambiente.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=ambienteDel&idAmbiente="+ambiente.getString("id")+"'>Excluir</a></p>";
+                    
+                    mensagem = mensagem + "<tr> <td>"+ambiente.getString("nome")+"</td> <td> <a href='index.jsp?url=ambienteAlt&idAmbiente="+ambiente.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=ambienteDel&idAmbiente="+ambiente.getString("id")+"'>Excluir</a></p> </td> </tr>";
                 }
                 
+                mensagem = mensagem + "</table>";
                 connection.close();
             } catch (SQLException sqle) {
                 mensagem = "Ocorreu um erro ao pesquisar o ambiente. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;

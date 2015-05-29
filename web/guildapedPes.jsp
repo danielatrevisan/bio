@@ -23,15 +23,18 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "select * from guildaped where upper(nome) like upper('%"+cNome+"%')";
+                sql = "select * from guildaped where upper(nome) like upper('%"+cNome+"%') order by nome";
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);
+                mensagem = "<table> <tr> <td><b>Guildaped</b></td> </tr>";
 				
 		guildaped = stmt.executeQuery(); 
 		  while(guildaped.next()) {
-                    mensagem = mensagem + "<p>"+guildaped.getString("nome")+" - "+guildaped.getString("observacoes")+" "+"<a href='index.jsp?url=guildapedAlt&idGuildaped="+guildaped.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=guildapedDel&idGuildaped="+guildaped.getString("id")+"'>Excluir</a></p>";
+                    mensagem = mensagem + "<tr> <td>"+guildaped.getString("nome")+" </td> <td> "+"</td> <td> <a href='index.jsp?url=guildapedAlt&idGuildaped="+guildaped.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=guildapedDel&idGuildaped="+guildaped.getString("id")+"'>Excluir</a></p>";
+                 
                 }
                 
+                mensagem = mensagem + "</table>";
                 connection.close();
             } catch (SQLException sqle) {
                 mensagem = "Ocorreu um erro ao pesquisar GUILDAPED. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
@@ -45,7 +48,7 @@
        <legend>Pesquisa - Guilda Trófica de Alimentação</legend>
 
       <p>
-        <label for="cNome">GUILDAPED: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
+        <label for="cNome">Guildaped: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
       </p>
 
       <% out.println(mensagem);%>

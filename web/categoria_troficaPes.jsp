@@ -26,13 +26,18 @@
                 sql = "select * from ctrof where upper(nome) like upper('%"+cNome+"%')";
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);
+                
+                mensagem = "<table> <tr> <td><b>Categoria Trófica</b></td></tr>";
 				
 		ctrof = stmt.executeQuery(); 
 		  while(ctrof.next()) {
-                    mensagem = mensagem + "<p>"+ctrof.getString("nome")+" - "+ctrof.getString("observacoes")+" "+"<a href='index.jsp?url=ctrofAlt&idCtrof="+ctrof.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=ctrofDel&idCtrof="+ctrof.getString("id")+"'>Excluir</a></p>";
+                    mensagem = mensagem + "<tr> <td>"+ctrof.getString("nome")+" </td> <td> "+"</td> <td><a href='index.jsp?url=ctrofAlt&idCtrof="+ctrof.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=ctrofDel&idCtrof="+ctrof.getString("id")+"'>Excluir</a></p> </td> </tr>";
+                    
                 }
                 
+                mensagem = mensagem + "</table>";
                 connection.close();
+                
             } catch (SQLException sqle) {
                 mensagem = "Ocorreu um erro ao pesquisar a categoria trófica. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
                 sqle.printStackTrace();          

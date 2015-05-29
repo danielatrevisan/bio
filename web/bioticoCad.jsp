@@ -338,7 +338,7 @@
                         try {
                             Connection connection = PosFactory.getConnection();
 
-                            sql = "select f.id, f.nome fam, o.nome ord from familia f join ordem o on f.ordem_id = o.id order by f.nome";
+                            sql = "select f.id, f.nome fam, o.nome ord from familia f left join ordem o on f.ordem_id = o.id order by f.nome";
                                     
                             PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -485,8 +485,7 @@
                 </select>                                                                                         
             </p>
             </fieldset>
-        <fieldset>
-            <legend></legend>
+        <fieldset>            
             <p>              
                 <label for="cLt">Comprimento Total: </label><input id="cLt" name="tLt" type="text" size="10" maxlength="50"/>                
                 
