@@ -1,12 +1,3 @@
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="conn.PosFactory"%>
-
-
 <%
 	//Inicializa Variáveis
     String sql = "";
@@ -38,26 +29,17 @@
 
                 stmt.execute();         
 
-                mensagem = "Guilda Trófica de Alimentação Cadastrada com Sucesso";
+                mensagem = "Guilda Tr�fica de Alimenta��o Cadastrada com Sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
-                mensagem = "Ocorreu um erro ao cadastrar guilda trófica de alimentação. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
+                mensagem = "Ocorreu um erro ao cadastrar guilda tr�fica de alimenta��o. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
                 sqle.printStackTrace();          
         } 
     }        
 %>
 
-
-<!DOCTYPE html>
-<html>
-<head lang="pt-br">
-    <meta charset="UTF-8">
-    <title>Cadastro de Guilda Trófica de Alimentação</title>
-    <link rel="stylesheet" type="text/css" href="css/form.css"/>
-</head>
-<body>
-<form method="post" id="cadastro" action="guildapedCad.jsp">
+<form method="post" id="cadastro" action="index.jsp?url=guildapedCad">
     <fieldset>
         <legend>Guilda Trófica de Alimentação (guildaped)</legend>
       <p>
@@ -72,5 +54,3 @@
     </p>  
     </fieldset>
 </form>
-</body>
-</html>

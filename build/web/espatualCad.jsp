@@ -1,12 +1,3 @@
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="conn.PosFactory"%>
-
-
 <%
 	//Inicializa VariÃ¡veis
     String sql = "";
@@ -50,19 +41,11 @@
 %>
 
 
-<!DOCTYPE html>
-<html>
-<head lang="pt-br">
-    <meta charset="UTF-8">
-    <title>Cadastro de Espatual</title>
-    <link rel="stylesheet" type="text/css" href="css/form.css"/>
-</head>
-<body>
-<form method="post" id="cadastro" action="espatualCad.jsp">
+<form method="post" id="cadastro" action="index.jsp?url=espatualCad">
     <fieldset>
         <legend>Espatual</legend>
       <p>
-        <label for="especieAgrupadaId">EspÃ©cie Agrupada: </label>
+        <label for="especieAgrupadaId">Espécie Agrupada: </label>
         <%
                             ResultSet especieAgrupada = null;
                             try {
@@ -88,10 +71,10 @@
         </select>               
       </p>   
       <p>
-        <label for="cNome">Espatual: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
+        <label for="cNome">Espatual: </label><input id="cNome" name="tNome" type="text" size="30" maxlength="255"/>
       </p>
       <p>
-        <label for="cObs">ObservaÃ§Ãµes: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
+        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
       </p>
     
     <% out.println(mensagem);%>
@@ -100,5 +83,3 @@
     </p>  
     </fieldset>
 </form>
-</body>
-</html>

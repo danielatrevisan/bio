@@ -11,7 +11,7 @@
     
     String botao = request.getParameter("botao");
 	
-	//Trata a A√ß√£o do Bot√£o
+	//Trata a AÁ„o do Bot„o
     
     String acao = "";
     if(botao==null){

@@ -49,20 +49,20 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "insert into exemplar (genero_especie_id, migraped_id, migrad_id, guildaped_id, ctrof_id, aparelho_id, estadio_id, ambiente_id, esporigi_id, familia_id, especie_id, esppecie_id, espatual_id,ponto_id, local_coleta_id, projeto_id, data_coleta, horario, numero, lt, ls, wt, sexo, wg, gre, gri, we, wv)"
+                sql = "insert into biotico (genero_especie_id, migraped_id, migrad_id, guildaped_id, ctrof_id, aparelho_id, estadio_id, ambiente_id, esporigi_id, familia_id, especie_id, esppecie_id, espatual_id,ponto_id, local_coleta_id, projeto_id, data_coleta, horario, numero, lt, ls, wt, sexo, wg, gre, gri, we, wv)"
                         + "values ('" +nGeneroEspecie+"', '" +nMigraped+"', '" +nMigrad+"', '" +nGuildaped+"', '" +nCtrof+"', '" +nAparelho+"', '" +nEstadio+"', '" +nAmbiente+"', '" +nEsporigi+"', '" +nFamilia+"', '" +nEspecie+"', '" +nEsppecie+"', '" +nEspatual+"', '" +nPonto+"', '" +nLocalColeta+"', '" +nProjeto+"', '" +nData+"', '" +nHorario+"', '" +nNumero+"', '" +nLt+"','" +nLs+"','" +nWt+"', '" +nSexo+"', '" +nWg+"','" +nGre+"','" +nGri+"','" +nWe+"','" +nWv+"')";
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
                 stmt.execute();         
 
-                mensagem = "Exemplar Cadastrado com Sucesso";
+                mensagem = "Biótico Cadastrado com Sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
-                mensagem = "Ocorreu um erro ao cadastrar exemplar. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
+                mensagem = "Ocorreu um erro ao cadastrar dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
                 sqle.printStackTrace();          
-        } 
+        } out.println(sql);
     }        
 %>
 
@@ -90,7 +90,7 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o exemplar. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
@@ -142,7 +142,7 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o exemplar. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
@@ -168,7 +168,7 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o exemplar. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
@@ -192,7 +192,7 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o exemplar. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
@@ -220,7 +220,7 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o exemplar. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
@@ -245,7 +245,7 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o exemplar. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
@@ -270,7 +270,7 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o exemplar. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
@@ -296,7 +296,7 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o exemplar. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
@@ -321,7 +321,7 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o exemplar. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
@@ -346,7 +346,7 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o exemplar. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
@@ -372,7 +372,7 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o exemplar. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
@@ -397,7 +397,7 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o exemplar. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
@@ -423,7 +423,7 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o exemplar. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
@@ -448,7 +448,7 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o exemplar. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
@@ -465,7 +465,7 @@
                         try {
                             Connection connection = PosFactory.getConnection();
 
-                            sql = "select e.id, e.nome especie, ea.nome especie_agrupada from espatual e left join especie_agrupada ea on e.especie_agrupada_id = ea.id order by especie";
+                            sql = "select e.id, e.nome, em.nome maturacao from estadio e left join estadio_maturacao em on e.estadio_maturacao_id = em.id order by e.nome";
                                     
                             PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -473,14 +473,14 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o exemplar. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
                 <select name="nEstadioId" id="estadioId">   
                     <option> </option>
                     <%while(estadio.next()) { %>
-                    <option value="<%out.print(estadio.getString("id"));%>"><%out.print(estadio.getString("especie"));%> - <%out.print(estadio.getString("especie_agrupada"));%></option>
+                    <option value="<%out.print(estadio.getString("id"));%>"><%out.print(estadio.getString("nome"));%> - <%out.print(estadio.getString("maturacao"));%></option>
                 <%}%>
                 </select>                                                                                         
             </p>

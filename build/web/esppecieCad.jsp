@@ -1,11 +1,3 @@
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="conn.PosFactory"%>
-
 
 <%
 	//Inicializa Variáveis
@@ -49,19 +41,11 @@
     }        
 %>
 
-<!DOCTYPE html>
-<html>
-<head lang="pt-br">
-    <meta charset="UTF-8">
-    <title>Cadastro de Esppecie</title>
-    <link rel="stylesheet" type="text/css" href="css/form.css"/>
-</head>
-<body>
-<form method="post" id="cadastro" action="">
+<form method="post" id="cadastro" action="index.jsp?url=esppecieCad">
     <fieldset>
         <legend>Esppecie</legend>
       <p>
-        <label for="especieAgrupadaId">Espécie Agrupada: </label>
+        <label for="especieAgrupadaId">Esp�cie Agrupada: </label>
         <%
                             ResultSet especieAgrupada = null;
                             try {
@@ -98,5 +82,3 @@
     </p>  
     </fieldset>
 </form>
-</body>
-</html>

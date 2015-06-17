@@ -1,12 +1,3 @@
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="conn.PosFactory"%>
-
-
 <%
 	//Inicializa VariÃ¡veis
     String sql = "";
@@ -38,7 +29,7 @@
 
                 stmt.execute();         
 
-                mensagem = "GÃªnero/EspÃ©cie (GNE) Cadastrada com Sucesso";
+                mensagem = "Gênero/Espécie (GNE) Cadastrada com Sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
@@ -48,19 +39,9 @@
     }        
 %>
 
-
-
-<!DOCTYPE html>
-<html>
-<head lang="pt-br">
-    <meta charset="UTF-8">
-    <title>Cadastro de GÃªnero / EspÃ©cie</title>
-    <link rel="stylesheet" type="text/css" href="css/form.css"/>
-</head>
-<body>
-<form method="post" id="cadastro" action="">
+<form method="post" id="cadastro" action="index.jsp?url=genero_especieCad">
     <fieldset>
-        <legend>GÃªnero / EspÃ©cie</legend>        
+        <legend>Gênero / Espécie</legend>        
       <p>
         <label for="cNome">Nome: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
       </p>
@@ -73,5 +54,3 @@
       </p>  
     </fieldset>
 </form>
-</body>
-</html>

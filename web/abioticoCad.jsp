@@ -77,8 +77,8 @@
                 <fieldset>
                 <table width="0" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td><label for="tAmostra">Amostra: </label><input id="tAmostra" name="tAmostra" type="text" size="10" maxlength="50" READONLY/></td>
-                    <td>
+                    <td width="150"><label for="tAmostra">Amostra: </label><input id="tAmostra" name="tAmostra" type="text" size="10" maxlength="50" READONLY/></td>
+                    <td width="150">
                         <label for="tProjeto">Projeto: </label>                         
                         <%
                             ResultSet proj = null;
@@ -104,7 +104,7 @@
                             <option value="<%out.print(proj.getString("id"));%>"><%out.print(proj.getString("nome"));%></option>
                         <%}%>
                         </select>
-                    </td>
+                    </td>                    
                   </tr>
                   <tr>
                     <td>
@@ -137,15 +137,20 @@
                     </td>
                     <td>
                         <label for="DataColeta">Data: </label><input id="tDataColeta" name="tDataColeta" type="date"/>
-                        <label for="tHora">Hora: </label><input id="tHora" name="tHora" type="text" size="10" maxlength="50"/>
+                        
                     </td>
+                    <tr>
+                        <td>                       
+                            <label for="tHora">Hora: </label><input id="tHora" name="tHora" type="text" size="10" maxlength="50"/>
+                        </td>
+                    </tr>
                   </tr>
                 </table>
                 </fieldset>
                 <fieldset>
                     <table width="0" border="0" cellspacing="0" cellpadding="0">
                       <tr>
-                        <td>
+                        <td width="150">
                             <label for="aparelhoId">Aparelho: </label>
                         <%
                             ResultSet aparelho = null;
@@ -172,36 +177,36 @@
                         <%}%>
                         </select>
                         </td>
-                        <td><label for="tPlanc">Planc: </label><input id="tPlanc" name="tPlanc" type="text" size="10" maxlength="50"/></td>
-                        <td><label for="tRede">Rede: </label><input id="tRede" name="tRede" type="text" size="10" maxlength="50"/></td>
+                        <td width="150"><label for="tPlanc">Planc: </label><input id="tPlanc" name="tPlanc" type="text" size="10" maxlength="50"/></td>
+                        <td width="150"><label for="tRede">Rede: </label><input id="tRede" name="tRede" type="text" size="10" maxlength="50"/></td>
                       </tr>
                     </table>
                 </fieldset>
                 <fieldset>
                     <table width="0" border="0" cellspacing="0" cellpadding="0">
                       <tr>
-                        <td><label for="tMargem">Margem: </label><input id="tMargem" name="tMargem" type="text" size="10" maxlength="50"/></td>
-                        <td><label for="tSMF">SMF: </label><input id="tSMF" name="tSMF" type="text" size="10" maxlength="50"/></td>
-                        <td><label for="tProfundidade">Profundidade: </label><input id="tProfundidade" name="tProfundidade" type="text" size="10" maxlength="50"/></td>
+                        <td width="150"><label for="tMargem">Margem: </label><input id="tMargem" name="tMargem" type="text" size="10" maxlength="50"/></td>
+                        <td width="150"><label for="tSMF">SMF: </label><input id="tSMF" name="tSMF" type="text" size="10" maxlength="50"/></td>
+                        <td width="150"><label for="tProfundidade">Profundidade: </label><input id="tProfundidade" name="tProfundidade" type="text" size="10" maxlength="50"/></td>
                       </tr>
                     </table>
                 </fieldset>
                 <fieldset>
                     <table width="0" border="0" cellspacing="0" cellpadding="0">
                       <tr>
-                        <td><label for="tAtividade">Atividade: </label><input id="tAtividade" name="tAtividade" type="text" size="10" maxlength="50"/></td>
-                        <td><label for="tVento">Vento: </label><input id="tVento" name="tVento" type="text" size="10" maxlength="50"/></td>
-                        <td><label for="tNebulosidade">Nebulosidade: </label><input id="tNebulosidade" name="tNebulosidade" type="text" size="10" maxlength="50"/></td>
+                        <td width="150"><label for="tAtividade">Atividade: </label><input id="tAtividade" name="tAtividade" type="text" size="10" maxlength="50"/></td>
+                        <td width="150"><label for="tVento">Vento: </label><input id="tVento" name="tVento" type="text" size="10" maxlength="50"/></td>
+                        <td width="150"><label for="tNebulosidade">Nebulosidade: </label><input id="tNebulosidade" name="tNebulosidade" type="text" size="10" maxlength="50"/></td>
                       </tr>
                       <tr>
-                        <td><label for="tchuva">Chuva: </label><input id="tChuva" name="tChuva" type="text" size="10" maxlength="50"/></td>
-                        <td><label for="tTar">Temperatura do Ar: </label><input id="tTar" name="tTar" type="text" size="10" maxlength="50"/></td>
-                        <td><label for="tTagua">Temperatura da Água: </label><input id="tTagua" name="tAgua" type="text" size="10" maxlength="50"/></td>
+                        <td width="150"><label for="tchuva">Chuva: </label><input id="tChuva" name="tChuva" type="text" size="10" maxlength="50"/></td>
+                        <td width="150"><label for="tTar">Temperatura do Ar: </label><input id="tTar" name="tTar" type="text" size="3" maxlength="50"/></td>
+                        <td width="150"><label for="tTagua">Temperatura da Água: </label><input id="tTagua" name="tAgua" type="text" size="3" maxlength="50"/></td>
                       </tr>
                       <tr>
-                        <td><label for="tTransp">Transparência: </label><input id="tTransp" name="tTransp" type="text" size="10" maxlength="50"/></td>
-                        <td><label for="tPh">PH: </label><input id="tPh" name="tPh" type="text" size="10" maxlength="50"/></td>
-                        <td><label for="tCond">Condutividade: </label><input id="tCond" name="tCond" type="text" size="10" maxlength="50"/></td>
+                        <td width="150"><label for="tTransp">Transparência: </label><input id="tTransp" name="tTransp" type="text" size="10" maxlength="50"/></td>
+                        <td width="150"><label for="tPh">PH: </label><input id="tPh" name="tPh" type="text" size="10" maxlength="50"/></td>
+                        <td width="150"><label for="tCond">Condutividade: </label><input id="tCond" name="tCond" type="text" size="9" maxlength="50"/></td>
                       </tr>                      
                     </table>
                 </fieldset>                

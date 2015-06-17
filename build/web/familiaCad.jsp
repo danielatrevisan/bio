@@ -1,11 +1,3 @@
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="conn.PosFactory"%>
-
 
 <%
 	//Inicializa Variáveis
@@ -39,28 +31,19 @@
 
                 stmt.execute();         
 
-                mensagem = "Família Cadastrada com Sucesso";
+                mensagem = "Fam�lia Cadastrada com Sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
-                mensagem = "Ocorreu um erro ao cadastrar família. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
-                sqle.printStackTrace();          
+                mensagem = "Ocorreu um erro ao cadastrar fam�lia. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
+                sqle.printStackTrace();
         } 
     }        
 %>
 
-
-<!DOCTYPE html>
-<html>
-<head lang="pt-br">
-    <meta charset="UTF-8">
-    <title>Cadastro de Família</title>
-    <link rel="stylesheet" type="text/css" href="css/form.css"/>
-</head>
-<body>
-<form method="post" id="cadastro" action="familiaCad.jsp">
+<form method="post" id="cadastro" action="index.jsp?url=familiaCad">
     <fieldset>
-        <legend>Família</legend>
+        <legend>Fam&iacute;lia</legend>
         <p>
            <label for="ordemId">Ordem: </label>
            <%
@@ -76,7 +59,7 @@
                                     
                                     connection.close();
                                 } catch (SQLException sqle) {
-                                    out.println("Ocorreu um erro ao cadastrar a família. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                    out.println("Ocorreu um erro ao cadastrar a fam�lia. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                     sqle.printStackTrace();          
                             }
 
@@ -88,7 +71,7 @@
         </select>             
         </p>           
        <p>
-           <label for="cNome">Família: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
+           <label for="cNome">Fam&iacute;lia: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
        </p>
        <p>
            <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
@@ -99,5 +82,3 @@
       </p>  
       </fieldset>
 </form>
-</body>
-</html>

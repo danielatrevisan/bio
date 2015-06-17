@@ -29,7 +29,7 @@
 
                 stmt.execute();         
 
-                mensagem = "GÃªnero/EspÃ©cie (GNE) Cadastrada com Sucesso";
+                mensagem = "Gênero/Espécie (GNE) Cadastrada com Sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
@@ -41,7 +41,7 @@
 
 <form method="post" id="cadastro" action="index.jsp?url=genero_especieCad">
     <fieldset>
-        <legend>GÃªnero / EspÃ©cie</legend>        
+        <legend>Gênero / Espécie</legend>        
       <p>
         <label for="cNome">Nome: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
       </p>

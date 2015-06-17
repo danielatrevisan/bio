@@ -1,12 +1,3 @@
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="conn.PosFactory"%>
-
-
 <%
 	//Inicializa VariÃ¡veis
     String sql = "";
@@ -39,30 +30,21 @@
 
                 stmt.execute();         
 
-                mensagem = "EspÃ©cie Cadastrada com Sucesso";
+                mensagem = "Espécie Cadastrada com Sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
-                mensagem = "Ocorreu um erro ao cadastrar espÃ©cie. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
+                mensagem = "Ocorreu um erro ao cadastrar espécie. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
                 sqle.printStackTrace();          
         } 
     }        
 %>
 
-
-<!DOCTYPE html>
-<html>
-<head lang="pt-br">
-    <meta charset="UTF-8">
-    <title>Cadastro de EspÃ©cie</title>
-    <link rel="stylesheet" type="text/css" href="css/form.css"/>
-</head>
-<body>
-<form method="post" id="cadastro" action="">
+<form method="post" id="cadastro" action="index.jsp?url=especieCad">
     <fieldset>
-        <legend>EspÃ©cie</legend>       
+        <legend>Espécie</legend>       
       <p>
-        <label for="especieAgrupadaId">EspÃ©cie Agrupada: </label>
+        <label for="especieAgrupadaId">Espécie Agrupada: </label>
         <%
                             ResultSet especieAgrupada = null;
                             try {
@@ -88,10 +70,10 @@
         </select>               
       </p>   
       <p>
-        <label for="cNome">EspÃ©cie: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
+        <label for="cNome">Espécie: </label><input id="cNome" name="tNome" type="text" size="30" maxlength="255"/>
       </p>
       <p>
-        <label for="cObs">ObservaÃ§Ãµes: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
+        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
       </p>
     
     <% out.println(mensagem);%>
@@ -100,5 +82,3 @@
     </p>  
     </fieldset>
 </form>
-</body>
-</html>
