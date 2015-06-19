@@ -86,8 +86,8 @@
 					out.write("OCORREU UMA PROBLEMA - FAVOR INFORMAR ADMINISTRADOR POR email@email.com.br!<br><br>Exception::<br>" + sqle);
 					sqle.printStackTrace();          
 			}
-		%>
-            <% while(abiotico.next()) { %>
+		//alterar para first e retirar o while
+                  while(abiotico.next()) { %>
         <form method="post" id="cadastro" action="index.jsp?abioticoAlt&idAbiotico=<%out.print(abiotico.getString("id"));%>">            
             <fieldset>
                 <legend>Dados Abióticos</legend>

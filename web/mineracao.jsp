@@ -1,4 +1,6 @@
-
+<%@page import="weka.filters.supervised.attribute.AttributeSelection"%>
+<%@page import="weka.attributeSelection.*" %>
+<%@page import="weka.filters.*"%>
 <%@page import="weka.associations.PredictiveApriori"%>
 <%@page import="weka.core.Instances"%>
 <%@page import="weka.associations.AprioriItemSet"%>
@@ -10,7 +12,7 @@
     String mensagem = "";
     
     //Recebe dados do Formulário
-     
+    
     String nLocal = request.getParameter("nLocal"); 	
     String nPeriodo = request.getParameter("nPeriodo"); 	
     String nAparelho = request.getParameter("nAparelho");
@@ -203,6 +205,38 @@
     consulta="select  l.nome as local,ap.nome as aparelho, a.smf, a.ph, coalesce(a.tagua, '') as tagua, a.cond, ab.nome as ambiente, g.nome as gne, m.nome as migraped, md.nome as migrad, gp.nome as guildaped, c.nome as ctrof, f.nome as familia, e.nome as especie from biotico b      left join abiotico a on b.abiotico_id = a.id      left join local_coleta l on a.local_coleta_id = l.id       left join aparelho ap on b.aparelho_id = ap.id      left join ambiente ab on b.ambiente_id = ab.id      left join genero_especie g on b.genero_especie_id = g.id       left join migraped m on b.migraped_id = m.id      left join migrad md on b.migrad_id = md.id      left join guildaped gp on b.guildaped_id = gp.id      left join ctrof c  on  b.ctrof_id = c.id      left join familia f on b.familia_id = f.id       left join especie e on b.especie_id = e.id";
     query.setQuery(consulta);
     Instances data = query.retrieveInstances();
+    
+    Instances relevantData = null;
+
+	AttributeSelection filter = new AttributeSelection();
+	CfsSubsetEval eval = new CfsSubsetEval();
+	GreedyStepwise search = new GreedyStepwise();
+	search.setSearchBackwards(true);
+	filter.setEvaluator(eval);
+    filter.setSearch(search);
+    try {
+        filter.setInputFormat(data);
+        relevantData = AttributeSelection.useFilter(data,filter);
+      }
+     catch (  Exception e) {
+    	 out.println("Erro ao realizar reamostragem dados de entrada com atributos selecionados!");
+    	 out.println("<br><br>");
+        e.printStackTrace();
+      }
+
+	out.println("Atributos antigos: "+data);
+	out.println("<br><br><br>");
+	out.println("Atributos relevantes: "+relevantData);
+
+	dado.setOptions(weka.core.Utils.splitOptions("-N 20 -T 0 -C 0.1 -D 0.05 -U 1.0 -M 0.1 -S -1.0 -c -1"));
+	
+	
+	//dado.buildAssociations(relevantData);
+	dado.buildAssociations(data);
+	//out.println("dados: "+dado.toString());
+    
+    
+    
     dado.setOptions(weka.core.Utils.splitOptions("-N 20 -T 0 -C 0.1 -D 0.05 -U 1.0 -M 0.1 -S -1.0 -c -1"));
     dado.buildAssociations(data);
 //    out.println(dado.toString());

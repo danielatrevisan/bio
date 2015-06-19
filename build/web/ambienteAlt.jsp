@@ -1,7 +1,7 @@
 <%
 	//Inicializa VariÃ¡veis
     String sql = "";
-	String mensagem = "";
+    String mensagem = "";
     
     //Recebe dados do FormulÃ¡rio
         
@@ -11,8 +11,7 @@
     String nObs = request.getParameter("tObs");
     
     String botao = request.getParameter("botao");
-	
-	//Trata a AÃ§Ã£o do BotÃ£o
+    Connection connection;
     
     String acao = "";
     if(botao==null){
@@ -23,52 +22,51 @@
         
     if(acao.equals("Salvar")) {
         try {
-                Connection connection = PosFactory.getConnection();
+               connection = PosFactory.getConnection();	
 
                 sql = "update ambiente set nome='"+nNome+"', observacoes='"+nObs+"' where id="+idAmbiente;
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
-
                 stmt.execute();         
 
                 mensagem = "Ambiente alterado com sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
-                mensagem = "Ocorreu um erro ao cadastrar o ambiente. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
+                mensagem = "Ocorreu um erro ao alterar o ambiente. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
                 sqle.printStackTrace();          
         } 
     }        
-%>
+        
 
-        <%
-			ResultSet abiotico = null;
+			ResultSet ambiente = null;
 			try {
-					Connection connection = PosFactory.getConnection();
+					connection = PosFactory.getConnection();	
 		
-					sql = "SELECT * FROM abiotico WHERE id = "+idAbiotico;
+					sql = "SELECT * FROM ambiente WHERE id = "+idAmbiente;
 					
 					PreparedStatement stmt = connection.prepareStatement(sql);
 		
-					abiotico = stmt.executeQuery();      
+					ambiente = stmt.executeQuery();      
 		
 					connection.close();
 				} catch (SQLException sqle) {
 					out.write("Ocorreu um erro - Entre em contato com o Administrador do Sistema: email@email.com.br!<br><br>Exception::<br>" + sqle);
-					sqle.printStackTrace();          
+					sqle.printStackTrace();         
 			}
-		%>
-            <% while(abiotico.next()) { %>
+	
+             ambiente.next(); 
+%>
             
-<form method="post" id="cadastro" action="ambienteCad.jsp">
+<form method="post" id="cadastro" action="index.jsp?url=ambienteAlt">
     <fieldset>
         <legend>Ambiente da Coleta</legend>
        
-      <p>
-        <label for="cNome">Nome: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
+        <p><input id="idAmbiente" name="idAmbiente" type="hidden" value="<% out.print(idAmbiente); %>" />
+          <label for="cNome">Nome: </label><input id="cNome" name="tNome" type="text" value="<%out.print(ambiente.getString("nome")); %>" size="50" maxlength="255"/>
       </p>
       <p>
-        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
+        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs" rows="10" cols="50" maxlength="1000"><%out.print(ambiente.getString("observacoes"));%></textarea>
       </p>
       
       <% out.println(mensagem);%>

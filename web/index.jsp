@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
+<%@page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
@@ -69,6 +69,9 @@
 				<%}%>
                 <%if(link.equals("ambientePes")){%>
 				 	<%@include file="ambientePes.jsp"%>
+                                <%}%>
+                <%if(link.equals("ambienteAlt")){%>
+				 	<%@include file="ambienteAlt.jsp"%>
 				<%}%>
                 <%if(link.equals("aparelhoCad")){%>
 				 	<%@include file="aparelhoCad.jsp"%>

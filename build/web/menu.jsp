@@ -23,7 +23,7 @@
         <li><a href="#"><span>Ambiente</span></a>
         <ul>
             <li><a href="index.jsp?url=ambienteCad">Cadastrar</a></li>
-            <li><a href="index.jsp?url=ambientePes">Pesquisar</a></li>
+            <li><a href="index.jsp?url=ambientePes">Pesquisar</a></li>            
         </ul></li>
         <li><a href="#"><span>Aparelho</span></a>
         <ul>
@@ -122,6 +122,6 @@
     </ul>
     </li>
 </ul>
-<li class="topmenu"><a href="#" style="height:16px;line-height:16px;">Exportação</a></li>
+<li class="topmenu"><a href="index.jsp?url=exportacao" style="height:16px;line-height:16px;">Exportação</a></li>
 <li class="topmenu"><a href="index.jsp?url=mineracao" style="height:16px;line-height:16px;">Mineração de dados</a></li>
 <!-- menu -->

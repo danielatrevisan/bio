@@ -1,7 +1,7 @@
 <%
 	//Inicializa VariÃ¡veis
     String sql = "";
-	String mensagem = "";
+    String mensagem = "";
     
     //Recebe dados do Formulário
     
