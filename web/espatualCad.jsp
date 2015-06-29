@@ -59,7 +59,7 @@
                                     
                                     connection.close();
                                 } catch (SQLException sqle) {
-                                    out.println("Ocorreu um erro ao cadastrar a esporigi. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                    out.println("Ocorreu um erro ao cadastrar a espatual. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                     sqle.printStackTrace();          
                             }
 

@@ -5,7 +5,7 @@
     
     //Recebe dados do FormulÃ¡rio
         
-    String idAmbiente = request.getParameter("idAmbiente");
+    String idMigraped = request.getParameter("idMigraped");
              
     String nNome = request.getParameter("tNome");
     String nObs = request.getParameter("tObs");
@@ -24,30 +24,30 @@
         try {
                connection = PosFactory.getConnection();	
 
-                sql = "update ambiente set nome='"+nNome+"', observacoes='"+nObs+"' where id="+idAmbiente;
+                sql = "update migraped set nome='"+nNome+"', observacoes='"+nObs+"' where id="+idMigraped;
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.execute();         
 
-                mensagem = "Ambiente alterado com sucesso";
+                mensagem = "Migraped alterado com sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
-                mensagem = "Ocorreu um erro ao alterar o ambiente. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
+                mensagem = "Ocorreu um erro ao alterar migraped. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
                 sqle.printStackTrace();          
         } 
     }        
         
 
-			ResultSet ambiente = null;
+			ResultSet migraped = null;
 			try {
 					connection = PosFactory.getConnection();	
 		
-					sql = "SELECT * FROM ambiente WHERE id = "+idAmbiente;
+					sql = "SELECT * FROM migraped WHERE id = "+idMigraped;
 					
 					PreparedStatement stmt = connection.prepareStatement(sql);
 		
-					ambiente = stmt.executeQuery();      
+					migraped = stmt.executeQuery();      
 		
 					connection.close();
 				} catch (SQLException sqle) {
@@ -55,23 +55,23 @@
 					sqle.printStackTrace();         
 			}
 	
-             ambiente.next(); 
+             migraped.next();              
 %>
-            
-<form method="post" id="cadastro" action="index.jsp?url=ambienteAlt">
+
+<form method="post" id="cadastro" action="index.jsp?url=migrapedAlt">
     <fieldset>
-        <legend>Ambiente da Coleta</legend>
+        <legend>Guilda Reprodutiva - não migrador (migraped)</legend>
         
-        <p><input id="idAmbiente" name="idAmbiente" type="hidden" value="<% out.print(idAmbiente); %>" />
-          <label for="cNome">Nome: </label><input id="cNome" name="tNome" type="text" value="<%out.print(ambiente.getString("nome")); %>" size="50" maxlength="255"/>
+      <p> <input id="idMigraped" name="idMigraped" type="hidden" value="<% out.print(idMigraped); %>" />
+        <label for="cNome">Nome: </label><input id="cNome" name="tNome" type="text" value="<%out.print(migraped.getString("nome")); %>" size="50" maxlength="255"/>
       </p>
-      <p>
-        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs" rows="10" cols="50" maxlength="1000"><%out.print(ambiente.getString("observacoes"));%></textarea>
+      <p>        
+        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs" rows="10" cols="50" maxlength="1000"><%out.print(migraped.getString("observacoes"));%></textarea>
       </p>
       
-      <% out.println(mensagem);%>
-      <p>
-        <input class="botao-form" id="btEnvia" name="botao" type="Submit" value="Salvar"/> 
-      </p>
+    <% out.println(mensagem);%>
+    <p>
+    <input class="botao-form" id="btEnvia" name="botao" type="Submit" value="Salvar"/> 
+    </p>
     </fieldset>
 </form>

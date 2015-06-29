@@ -5,7 +5,7 @@
     
     //Recebe dados do FormulÃ¡rio
         
-    String idAmbiente = request.getParameter("idAmbiente");
+    String idGenero_especie = request.getParameter("idGenero_especie");
              
     String nNome = request.getParameter("tNome");
     String nObs = request.getParameter("tObs");
@@ -24,30 +24,30 @@
         try {
                connection = PosFactory.getConnection();	
 
-                sql = "update ambiente set nome='"+nNome+"', observacoes='"+nObs+"' where id="+idAmbiente;
+                sql = "update genero_especie set nome='"+nNome+"', observacoes='"+nObs+"' where id="+idGenero_especie;
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.execute();         
 
-                mensagem = "Ambiente alterado com sucesso";
+                mensagem = "Gênero/Espécie alterado com sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
-                mensagem = "Ocorreu um erro ao alterar o ambiente. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
+                mensagem = "Ocorreu um erro ao alterar o gênero/espécie. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
                 sqle.printStackTrace();          
         } 
     }        
         
 
-			ResultSet ambiente = null;
+			ResultSet genero_especie = null;
 			try {
 					connection = PosFactory.getConnection();	
 		
-					sql = "SELECT * FROM ambiente WHERE id = "+idAmbiente;
+					sql = "SELECT * FROM genero_especie WHERE id = "+idGenero_especie;
 					
 					PreparedStatement stmt = connection.prepareStatement(sql);
 		
-					ambiente = stmt.executeQuery();      
+					genero_especie = stmt.executeQuery();      
 		
 					connection.close();
 				} catch (SQLException sqle) {
@@ -55,23 +55,23 @@
 					sqle.printStackTrace();         
 			}
 	
-             ambiente.next(); 
+             genero_especie.next();              
 %>
-            
-<form method="post" id="cadastro" action="index.jsp?url=ambienteAlt">
+
+<form method="post" id="cadastro" action="index.jsp?url=genero_especieAlt">
     <fieldset>
-        <legend>Ambiente da Coleta</legend>
+        <legend>Gênero / Espécie</legend>        
         
-        <p><input id="idAmbiente" name="idAmbiente" type="hidden" value="<% out.print(idAmbiente); %>" />
-          <label for="cNome">Nome: </label><input id="cNome" name="tNome" type="text" value="<%out.print(ambiente.getString("nome")); %>" size="50" maxlength="255"/>
+      <p> <input id="idGenero_especie" name="idGenero_especie" type="hidden" value="<% out.print(idGenero_especie); %>" />
+        <label for="cNome">Nome: </label><input id="cNome" name="tNome" type="text" value="<%out.print(genero_especie.getString("nome")); %>" size="50" maxlength="255"/>
       </p>
-      <p>
-        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs" rows="10" cols="50" maxlength="1000"><%out.print(ambiente.getString("observacoes"));%></textarea>
+      <p>        
+        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs" rows="10" cols="50" maxlength="1000"><%out.print(genero_especie.getString("observacoes"));%></textarea>
       </p>
       
       <% out.println(mensagem);%>
       <p>
-        <input class="botao-form" id="btEnvia" name="botao" type="Submit" value="Salvar"/> 
-      </p>
+      <input class="botao-form" id="btEnvia" name="botao" type="Submit" value="Salvar"/> 
+      </p>  
     </fieldset>
 </form>

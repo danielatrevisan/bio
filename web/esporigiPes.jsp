@@ -23,7 +23,7 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "select e.id, e.nome, ea.nome as spgroup from esporigi e left join especie_agrupada ea on e.especie_agrupada_id = ea.id where upper(e.nome) like upper('%"+cNome+"%')";
+                sql = "select e.id, e.nome, coalesce(ea.nome, '') as spgroup from esporigi e left join especie_agrupada ea on e.especie_agrupada_id = ea.id where upper(e.nome) like upper('%"+cNome+"%') order by e.nome";                
                 
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);

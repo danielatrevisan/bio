@@ -23,7 +23,7 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "select * from projeto where upper(nome) like upper('%"+cNome+"%')";
+                sql = "select * from projeto where upper(nome) like upper('%"+cNome+"%') order by nome";
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 mensagem = "<table> <tr> <td><b>Projeto</b></td> </tr>";

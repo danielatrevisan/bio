@@ -5,7 +5,7 @@
     
     //Recebe dados do FormulÃ¡rio
         
-    String idAmbiente = request.getParameter("idAmbiente");
+    String idEspecie_agrupada = request.getParameter("idEspecie_agrupada");
              
     String nNome = request.getParameter("tNome");
     String nObs = request.getParameter("tObs");
@@ -24,30 +24,30 @@
         try {
                connection = PosFactory.getConnection();	
 
-                sql = "update ambiente set nome='"+nNome+"', observacoes='"+nObs+"' where id="+idAmbiente;
+                sql = "update especie_agrupada set nome='"+nNome+"', observacoes='"+nObs+"' where id="+idEspecie_agrupada;
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.execute();         
 
-                mensagem = "Ambiente alterado com sucesso";
+                mensagem = "Espécie Agrupada alterado com sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
-                mensagem = "Ocorreu um erro ao alterar o ambiente. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
+                mensagem = "Ocorreu um erro ao alterar o espécie agrupada. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
                 sqle.printStackTrace();          
         } 
     }        
         
 
-			ResultSet ambiente = null;
+			ResultSet especie_agrupada = null;
 			try {
 					connection = PosFactory.getConnection();	
 		
-					sql = "SELECT * FROM ambiente WHERE id = "+idAmbiente;
+					sql = "SELECT * FROM especie_agrupada WHERE id = "+idEspecie_agrupada;
 					
 					PreparedStatement stmt = connection.prepareStatement(sql);
 		
-					ambiente = stmt.executeQuery();      
+					especie_agrupada = stmt.executeQuery();      
 		
 					connection.close();
 				} catch (SQLException sqle) {
@@ -55,18 +55,17 @@
 					sqle.printStackTrace();         
 			}
 	
-             ambiente.next(); 
+             especie_agrupada.next();              
 %>
-            
-<form method="post" id="cadastro" action="index.jsp?url=ambienteAlt">
+
+<form method="post" id="cadastro" action="index.jsp?url=especie_agrupadaAlt">
     <fieldset>
-        <legend>Ambiente da Coleta</legend>
-        
-        <p><input id="idAmbiente" name="idAmbiente" type="hidden" value="<% out.print(idAmbiente); %>" />
-          <label for="cNome">Nome: </label><input id="cNome" name="tNome" type="text" value="<%out.print(ambiente.getString("nome")); %>" size="50" maxlength="255"/>
+        <legend>Espécie Agrupada</legend>
+      <p><p> <input id="idEspecie_agrupada" name="idEspecie_agrupada" type="hidden" value="<% out.print(idEspecie_agrupada); %>" />
+        <label for="cNome">Nome: </label><input id="cNome" name="tNome" type="text" value="<%out.print(especie_agrupada.getString("nome")); %>" size="50" maxlength="255"/>
       </p>
       <p>
-        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs" rows="10" cols="50" maxlength="1000"><%out.print(ambiente.getString("observacoes"));%></textarea>
+        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs" rows="10" cols="50" maxlength="1000"><%out.print(especie_agrupada.getString("observacoes"));%></textarea>
       </p>
       
       <% out.println(mensagem);%>

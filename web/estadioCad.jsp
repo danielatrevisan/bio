@@ -30,11 +30,11 @@
 
                 stmt.execute();         
 
-                mensagem = "EstÃ¡dio Cadastrado com Sucesso";
+                mensagem = "Estádio Cadastrado com Sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
-                mensagem = "Ocorreu um erro ao cadastrar estÃ¡dio. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
+                mensagem = "Ocorreu um erro ao cadastrar estádio. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
                 sqle.printStackTrace();          
         } 
     }        
@@ -42,9 +42,9 @@
 
 <form method="post" id="cadastro" action="index.jsp?url=estadioCad">
     <fieldset>
-        <legend>EstÃ¡dio</legend>
+        <legend>Estádio</legend>
       <p>
-        <label for="estadioMaturacaoId">EstÃ¡dio de MaturaÃ§Ã£o: </label>
+        <label for="estadioMaturacaoId">Estádio de Maturação: </label>
         <%
             ResultSet estadioMaturacao = null;
             try {
@@ -58,7 +58,7 @@
                                     
                 connection.close();
                 } catch (SQLException sqle) {
-                    out.println("Ocorreu um erro ao cadastrar o estÃ¡dio. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                    out.println("Ocorreu um erro ao cadastrar o estádio. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                     sqle.printStackTrace();          
             }
 
@@ -70,10 +70,10 @@
         </select>          
       </p>   
       <p>
-        <label for="cNome">EstÃ¡dio: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
+        <label for="cNome">Estádio: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
       </p>
       <p>
-        <label for="cObs">ObservaÃ§Ãµes: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
+        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
       </p>
     <% out.println(mensagem);%>
     <p>

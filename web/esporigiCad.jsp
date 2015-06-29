@@ -44,7 +44,7 @@
     <fieldset>
         <legend>Esporigi</legend>
       <p>
-        <label for="especieAgrupadaId">EspÃ©cie Agrupada: </label>
+        <label for="especieAgrupadaId">Espécie Agrupada: </label>
         <%
                             ResultSet especieAgrupada = null;
                             try {
@@ -73,7 +73,7 @@
         <label for="cNome">Esporigi: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
       </p>
       <p>
-        <label for="cObs">ObservaÃ§Ãµes: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
+        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
       </p>
       
     <% out.println(mensagem);%>

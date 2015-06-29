@@ -23,7 +23,7 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "select * from ctrof where upper(nome) like upper('%"+cNome+"%')";
+                sql = "select * from ctrof where upper(nome) like upper('%"+cNome+"%') order by nome";
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 
@@ -31,7 +31,7 @@
 				
 		ctrof = stmt.executeQuery(); 
 		  while(ctrof.next()) {
-                    mensagem = mensagem + "<tr> <td>"+ctrof.getString("nome")+" </td> <td> "+"</td> <td><a href='index.jsp?url=ctrofAlt&idCtrof="+ctrof.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=ctrofDel&idCtrof="+ctrof.getString("id")+"'>Excluir</a></p> </td> </tr>";
+                    mensagem = mensagem + "<tr> <td>"+ctrof.getString("nome")+" </td> <td> "+"</td> <td><a href='index.jsp?url=categoria_troficaAlt&idCtrof="+ctrof.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=categoria_troficaDel&idCtrof="+ctrof.getString("id")+"'>Excluir</a></p> </td> </tr>";
                     
                 }
                 
