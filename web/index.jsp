@@ -226,6 +226,9 @@
                 <%if(link.equals("ordemAlt")){%>
 				 	<%@include file="ordemAlt.jsp"%>
 				<%}%>
+                <%if(link.equals("ordemDel")){%>
+				 	<%@include file="ordemDel.jsp"%>
+				<%}%>
                 <%if(link.equals("pontoCad")){%>
 				 	<%@include file="pontoCad.jsp"%>
 				<%}%>

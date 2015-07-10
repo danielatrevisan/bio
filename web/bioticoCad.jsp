@@ -178,30 +178,31 @@
                     <option value="<%out.print(ponto.getString("id"));%>"><%out.print(ponto.getString("nome"));%></option>
                 <%}%>
                 </select>
-		<label for="aparelhoId">Aparelho: </label>
-                <%
-                    ResultSet apar = null;
-                        try {
-                            Connection connection = PosFactory.getConnection();
+		    <label for="aparelhoId">Aparelho: </label>
+                        <%
+                            ResultSet aparelho = null;
+                            try {
+                                    Connection connection = PosFactory.getConnection();
 
-                            sql = "select id, nome from aparelho order by nome";
+                                    sql = "select a.id as id, a.nome as aparelho, e.nome as equipamento from aparelho a left join equipamento e on a.equipamento_id = e.id order by aparelho";
                                     
-                            PreparedStatement stmt = connection.prepareStatement(sql);
+                                    PreparedStatement stmt = connection.prepareStatement(sql);
 
-                            apar = stmt.executeQuery(); 
+                                    aparelho = stmt.executeQuery(); 
                                     
-                            connection.close();
-                            } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
-                                sqle.printStackTrace();          
+                                    connection.close();
+                                } catch (SQLException sqle) {
+                                    out.println("Ocorreu um erro ao cadastrar biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                    sqle.printStackTrace();          
                             }
-                %>
-                <select name="nAparelhoId" id="aparelhoId">
-                    <option> </option> 
-                    <%while(apar.next()) { %>
-                    <option value="<%out.print(apar.getString("id"));%>"><%out.print(apar.getString("nome"));%></option>
-                <%}%>
-                </select>                
+
+                        %>
+                        <select name="tAparelho" id="aparelhoId">
+                        <option></option>
+                        <%while(aparelho.next()) { %>
+                            <option value="<%out.print(aparelho.getString("id"));%>"><%out.print(aparelho.getString("aparelho"));%> - <%out.print(aparelho.getString("equipamento"));%></option>
+                        <%}%>
+                        </select>               
             </p>
         </fieldset>  
         <fieldset>
@@ -358,7 +359,7 @@
                 </select>              
              </p>    
              <p>
-                <label for="esporigiId">Esporigi: </label>
+                <label hidden for="esporigiId">Esporigi: </label>
                 <%
                     ResultSet esporigi = null;
                         try {
@@ -376,7 +377,7 @@
                                 sqle.printStackTrace();          
                             }
                 %>
-                <select name="nEsporigiId" id="esporigiId"> 
+                <select hidden name="nEsporigiId" id="esporigiId"> 
                     <option> </option>
                     <%while(esporigi.next()) { %>
                     <option value="<%out.print(esporigi.getString("id"));%>"><%out.print(esporigi.getString("esporigi"));%> - <%out.print(esporigi.getString("especie_agrupada"));%></option>
@@ -409,7 +410,7 @@
                 </select>
             </p>
             <p>
-                <label for="esppecieId">Esppecie: </label>
+                <label hidden for="esppecieId">Esppecie: </label>
                 <%
                     ResultSet esppecie = null;
                         try {
@@ -427,14 +428,14 @@
                                 sqle.printStackTrace();          
                             }
                 %>
-                <select name="nEsppecieId" id="esppecieId"> 
+                <select hidden name="nEsppecieId" id="esppecieId"> 
                     <option> </option>
                     <%while(esppecie.next()) { %>
                     <option value="<%out.print(esppecie.getString("id"));%>"><%out.print(esppecie.getString("especie"));%> - <%out.print(esppecie.getString("especie_agrupada"));%></option>
                 <%}%>
                 </select>          
             
-                <label for="espatualId">Espatual: </label>
+                <label hidden for="espatualId">Espatual: </label>
                 <%
                     ResultSet espatual = null;
                         try {
@@ -452,7 +453,7 @@
                                 sqle.printStackTrace();          
                             }
                 %>
-                <select name="nEspatualId" id="espatualId">
+                <select hidden name="nEspatualId" id="espatualId">
                     <option> </option>
                     <%while(espatual.next()) { %>
                     <option value="<%out.print(espatual.getString("id"));%>"><%out.print(espatual.getString("especie"));%> - <%out.print(espatual.getString("especie_agrupada"));%></option>

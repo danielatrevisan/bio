@@ -24,7 +24,7 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "insert into esporigi (especie_agrupada_id, nome, observacoes) values ('"+nEspecieAgrupada+"','"+nNome+"','"+nObs+"')";
+                sql = "insert into esporigi (especie_agrupada_id, nome, observacoes) values ("+nEspecieAgrupada+",'"+nNome+"','"+nObs+"')";
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -64,6 +64,7 @@
 
         %>
         <select name="nEspecieAgrupada" id="especieAgrupadaId">
+        <option value="null" selected></option>
         <%while(especieAgrupada.next()) { %>
             <option value="<%out.print(especieAgrupada.getString("id"));%>"><%out.print(especieAgrupada.getString("nome"));%></option>
         <%}%>
@@ -73,7 +74,7 @@
         <label for="cNome">Esporigi: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
       </p>
       <p>
-        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
+        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"></textarea>
       </p>
       
     <% out.println(mensagem);%>

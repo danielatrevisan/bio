@@ -20,11 +20,11 @@
         acao = request.getParameter("botao");
     }
         
-    if(acao.equals("Salvar")) {
+    if(acao.equals("Salvar")) {         
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "insert into especie (especie_agrupada_id, nome, observacoes) values ('"+nEspecieAgrupada+"','"+nNome+"','"+nObs+"')";
+                sql = "insert into especie (especie_agrupada_id, nome, observacoes) values ("+nEspecieAgrupada+",'"+nNome+"','"+nObs+"')";
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -35,14 +35,19 @@
                 connection.close();
             } catch (SQLException sqle) {
                 mensagem = "Ocorreu um erro ao cadastrar espécie. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
-                sqle.printStackTrace();          
+
+                sqle.printStackTrace();  
+                
         } 
     }        
 %>
 
 <form method="post" id="cadastro" action="index.jsp?url=especieCad">
     <fieldset>
-        <legend>Espécie</legend>       
+        <legend>Espécie</legend>   
+      <p>
+        <label for="cNome">Espécie: </label><input id="cNome" name="tNome" type="text" size="30" maxlength="255"/>
+      </p>
       <p>
         <label for="especieAgrupadaId">Espécie Agrupada: </label>
         <%
@@ -64,16 +69,14 @@
 
         %>
         <select name="nEspecieAgrupada" id="especieAgrupadaId">
+        <option value="null" selected></option>
         <%while(especieAgrupada.next()) { %>
             <option value="<%out.print(especieAgrupada.getString("id"));%>"><%out.print(especieAgrupada.getString("nome"));%></option>
         <%}%>
         </select>               
-      </p>   
-      <p>
-        <label for="cNome">Espécie: </label><input id="cNome" name="tNome" type="text" size="30" maxlength="255"/>
       </p>
       <p>
-        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
+        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"></textarea>
       </p>
     
     <% out.println(mensagem);%>

@@ -12,8 +12,7 @@
     String nProjeto = request.getParameter("nProjeto");    
     String nLocal = request.getParameter("nLocal");
     String nDataColeta = request.getParameter("nDataColeta");
-    String tHora = request.getParameter("tHora");
-    String nAparelho = request.getParameter("nAparelho"); 
+    String tHora = request.getParameter("tHora");    
     String tPlanc = request.getParameter("tPlanc");
     String tRede = request.getParameter("tRede");
     String tMargem = request.getParameter("tMargem");
@@ -28,16 +27,7 @@
     String tPh = request.getParameter("tPh");
     String tCond = request.getParameter("tCond");
     String tOdmg = request.getParameter("tOdmg");
-    String tVolume = request.getParameter("tVolume");
-    String tOvo = request.getParameter("tOvo");
-    String tLar1 = request.getParameter("tLar1");
-    String tLar2 = request.getParameter("tLar2");
-    String tJuve = request.getParameter("tJuve");
-    String tCama = request.getParameter("tCama");
     
-    String tDensiovo = request.getParameter("tDensiovo");
-    String tDensilar = request.getParameter("tDensilar");
-    String tDensiict = request.getParameter("tDensiict");
     
     String botao = request.getParameter("botao");
     Connection connection = null;
@@ -52,13 +42,12 @@
     if(acao.equals("Salvar")) {
         try {
                 connection = PosFactory.getConnection();
-
+                   
                 sql = "UPDATE abiotico "
-                        + " SET aparelho_id='"+nAparelho+"', local_coleta_id='"+nLocal+"', planc='"+tPlanc+"', data_coleta='"+nDataColeta+"', hora='"+tHora+"', margem='"+tMargem+"', smf='"+tSMF+"', ativ='"+tAtividade+"', vento='"+tVento+"', nebulosidade='"+tNebulosidade+"', chuva='"+tChuva+"', "
-                        + "     tar='"+tTar+"', tagua='"+tAgua+"', transp='"+tTransp+"', ph='"+tPh+"', cond='"+tCond+"', odmg='"+tOdmg+"', volume='"+tVolume+"', ovo='"+tOvo+"', lar1='"+tLar1+"', lar2='"+tLar2+"', juve='"+tJuve+"', cama='"+tCama+"', rede='"+tRede+"', densiovo='"+tDensiovo+"', "
-                        + "     densilar='"+tDensilar+"', densiict='"+tDensiict+"'"
+                        + " SET amostra='"+nAmostra+"',local_coleta_id='"+nLocal+"', planc='"+tPlanc+"', data_coleta='"+nDataColeta+"', hora='"+tHora+"', margem='"+tMargem+"', smf='"+tSMF+"', ativ='"+tAtividade+"', vento='"+tVento+"', nebulosidade='"+tNebulosidade+"', chuva='"+tChuva+"', "
+                        + "     tar='"+tTar+"', tagua='"+tAgua+"', transp='"+tTransp+"', ph='"+tPh+"', cond='"+tCond+"', odmg='"+tOdmg+"', rede='"+tRede+"'"
                         + " WHERE id="+idAbiotico;
-                               
+
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
                 stmt.execute();         
@@ -194,6 +183,7 @@
                         <td width="150"><label for="tTransp">Transparência: </label><input id="tTransp" name="tTransp" type="text" size="10" value="<%out.print(abiotico.getString("transp")); %>" maxlength="50"/></td>
                         <td width="150"><label for="tPh">PH: </label><input id="tPh" name="tPh" type="text" size="10" value="<%out.print(abiotico.getString("ph")); %>" maxlength="50"/></td>
                         <td width="150"><label for="tCond">Condutividade: </label><input id="tCond" name="tCond" type="text" size="9" value="<%out.print(abiotico.getString("cond")); %>" maxlength="50"/></td>
+                        <td width="150"><label for="tOdmg">ODMG: </label><input id="tCond" name="tOdmg" type="text" size="9" value="<%out.print(abiotico.getString("odmg")); %>" maxlength="50"/></td>
                       </tr>                      
                     </table>
                 </fieldset>    

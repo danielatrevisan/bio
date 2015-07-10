@@ -202,7 +202,7 @@
         }
     
     //out.println(consulta);
-    consulta="select  l.nome as local,ap.nome as aparelho, a.smf, a.ph, coalesce(a.tagua, '') as tagua, a.cond, ab.nome as ambiente, g.nome as gne, m.nome as migraped, md.nome as migrad, gp.nome as guildaped, c.nome as ctrof, f.nome as familia, e.nome as especie from biotico b      left join abiotico a on b.abiotico_id = a.id      left join local_coleta l on a.local_coleta_id = l.id       left join aparelho ap on b.aparelho_id = ap.id      left join ambiente ab on b.ambiente_id = ab.id      left join genero_especie g on b.genero_especie_id = g.id       left join migraped m on b.migraped_id = m.id      left join migrad md on b.migrad_id = md.id      left join guildaped gp on b.guildaped_id = gp.id      left join ctrof c  on  b.ctrof_id = c.id      left join familia f on b.familia_id = f.id       left join especie e on b.especie_id = e.id";
+    consulta="select l.nome as local,ap.nome as aparelho, a.smf, a.ph, coalesce(a.tagua, '') as tagua, a.cond, ab.nome as ambiente, g.nome as gne, m.nome as migraped, md.nome as migrad, gp.nome as guildaped, c.nome as ctrof, f.nome as familia, e.nome as especie from biotico b      left join abiotico a on b.abiotico_id = a.id      left join local_coleta l on a.local_coleta_id = l.id       left join aparelho ap on b.aparelho_id = ap.id      left join ambiente ab on b.ambiente_id = ab.id      left join genero_especie g on b.genero_especie_id = g.id       left join migraped m on b.migraped_id = m.id      left join migrad md on b.migrad_id = md.id      left join guildaped gp on b.guildaped_id = gp.id      left join ctrof c  on  b.ctrof_id = c.id      left join familia f on b.familia_id = f.id       left join especie e on b.especie_id = e.id";
     query.setQuery(consulta);
     Instances data = query.retrieveInstances();
     
@@ -272,7 +272,7 @@
                                 sqle.printStackTrace();          
                             }
                 %>
-                <select name="nLocal" id="localId">                    
+                <select name="nLocal" id="localId" size="30" multiple="MULTIPLE">                    
                     <option value="Todos">Todos </option>
                     <% while(local.next()) { %>
                     <option value="<%out.print(local.getString("id"));%>"><%out.print(local.getString("nome"));%> - <%out.print(local.getString("sigla"));%></option>

@@ -24,7 +24,7 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "insert into espatual (especie_agrupada_id, nome, observacoes) values ('"+nEspecieAgrupada+"','"+nNome+"','"+nObs+"')";
+                sql = "insert into espatual (especie_agrupada_id, nome, observacoes) values ("+nEspecieAgrupada+",'"+nNome+"','"+nObs+"')";
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -65,6 +65,7 @@
 
         %>
         <select name="nEspecieAgrupada" id="especieAgrupadaId">
+        <option value="null" selected></option>
         <%while(especieAgrupada.next()) { %>
             <option value="<%out.print(especieAgrupada.getString("id"));%>"><%out.print(especieAgrupada.getString("nome"));%></option>
         <%}%>
