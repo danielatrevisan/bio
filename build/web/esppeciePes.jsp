@@ -24,14 +24,14 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "select e.id, e.nome, ea.nome as spgroup from esppecie e left join especie_agrupada ea on e.especie_agrupada_id = ea.id where upper(e.nome) like upper('%"+cNome+"%')";
+                sql = "select e.id, e.nome, coalesce(ea.nome, '') as spgroup from esppecie e left join especie_agrupada ea on e.especie_agrupada_id = ea.id where upper(e.nome) like upper('%"+cNome+"%')";
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 mensagem = "<table> <tr> <td><b>Esppecie</b></td> <td><b>Espécie Agrupada</b></td> </tr>";
 				
 		esppecie = stmt.executeQuery(); 
 		  while(esppecie.next()) {                    
-                    mensagem = mensagem + "<tr> <td>"+esppecie.getString("nome")+" </td> <td> "+esppecie.getString("spgroup")+" </td> <td> "+"</td> <td> <a href='index.jsp?url=especieAlt&idEspecie="+esppecie.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=especieDel&idEspecie="+esppecie.getString("id")+"'>Excluir</a></p> </td> </tr>";
+                    mensagem = mensagem + "<tr> <td>"+esppecie.getString("nome")+" </td> <td> "+esppecie.getString("spgroup")+" </td> <td> "+"</td> <td> <a href='index.jsp?url=esppecieAlt&idEsppecie="+esppecie.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=esppecieDel&idEsppecie="+esppecie.getString("id")+"'>Excluir</a></p> </td> </tr>";
                     
                 }
                 

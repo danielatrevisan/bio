@@ -23,7 +23,7 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "select a.id, a.nome as aparelho, e.nome as equipamento from aparelho a left join equipamento e on a.equipamento_id = e.id where upper(a.nome) like upper('%"+cNome+"%')";
+                sql = "select a.id, a.nome as aparelho, e.nome as equipamento from aparelho a left join equipamento e on a.equipamento_id = e.id where upper(a.nome) like upper('%"+cNome+"%') order by a.nome";
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 

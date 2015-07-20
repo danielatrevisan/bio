@@ -190,4 +190,6 @@ fieldset{
 	
 }
 
-/* /tabelas e formulários */
+/* /tabelas e formulários */.td_g {
+	font-size: 7px;
+}

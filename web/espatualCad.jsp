@@ -30,7 +30,7 @@
 
                 stmt.execute();         
 
-                mensagem = "Espatual Cadastrada com Sucesso";
+                mensagem = "Espatual cadastrado com sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
@@ -75,7 +75,7 @@
         <label for="cNome">Espatual: </label><input id="cNome" name="tNome" type="text" size="30" maxlength="255"/>
       </p>
       <p>
-        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
+        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"></textarea>
       </p>
     
     <% out.println(mensagem);%>

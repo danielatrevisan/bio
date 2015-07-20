@@ -67,7 +67,7 @@
     </ul></li>
     <li><a href="#"><span>Estádio Maturação</span></a>
     <ul>
-        <li><a href="index.jsp?url=estadioCad">Cadastrar</a></li>
+        <li><a href="index.jsp?url=estadio_maturacaoCad">Cadastrar</a></li>
         <li><a href="index.jsp?url=estadio_maturacaoPes">Pesquisar</a></li>
     </ul></li>
     <li><a href="#"><span>Estádio</span></a>

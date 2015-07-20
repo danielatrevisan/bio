@@ -63,7 +63,7 @@
             }
 
         %>
-        <select name="nEstadioMaturacao" id="especieAgrupadaId">
+        <select name="nEstadioMaturacao" id="especieAgrupadaId">        
         <%while(estadioMaturacao.next()) { %>
             <option value="<%out.print(estadioMaturacao.getString("id"));%>"><%out.print(estadioMaturacao.getString("nome"));%></option>
         <%}%>
@@ -73,7 +73,7 @@
         <label for="cNome">Estádio: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
       </p>
       <p>
-        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
+        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"></textarea>
       </p>
     <% out.println(mensagem);%>
     <p>

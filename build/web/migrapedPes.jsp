@@ -23,7 +23,7 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "select * from migraped where upper(nome) like upper('%"+cNome+"%')";
+                sql = "select * from migraped where upper(nome) like upper('%"+cNome+"%') order by nome";
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 mensagem = "<table> <tr> <td><b>Migraped</b></td> </tr>";

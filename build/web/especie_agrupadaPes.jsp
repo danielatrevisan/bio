@@ -23,7 +23,7 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "select * from especie_agrupada where upper(nome) like upper('%"+cNome+"%')";
+                sql = "select * from especie_agrupada where upper(nome) like upper('%"+cNome+"%') order by nome";
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 

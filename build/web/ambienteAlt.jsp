@@ -61,7 +61,7 @@
 <form method="post" id="cadastro" action="index.jsp?url=ambienteAlt">
     <fieldset>
         <legend>Ambiente da Coleta</legend>
-       
+        
         <p><input id="idAmbiente" name="idAmbiente" type="hidden" value="<% out.print(idAmbiente); %>" />
           <label for="cNome">Nome: </label><input id="cNome" name="tNome" type="text" value="<%out.print(ambiente.getString("nome")); %>" size="50" maxlength="255"/>
       </p>

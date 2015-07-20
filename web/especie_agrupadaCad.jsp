@@ -29,7 +29,7 @@
 
                 stmt.execute();         
 
-                mensagem = "EspÃ©cie Agrupada Cadastrada com Sucesso";
+                mensagem = "Espécie agrupada cadastrada com sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
@@ -46,7 +46,7 @@
         <label for="cNome">Nome: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
       </p>
       <p>
-        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
+        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"></textarea>
       </p>
       
       <% out.println(mensagem);%>

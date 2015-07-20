@@ -30,7 +30,7 @@
 
                 stmt.execute();         
 
-                mensagem = "Esporigi Cadastrada com Sucesso";
+                mensagem = "Esporigi cadastrada com sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
@@ -43,6 +43,9 @@
 <form method="post" id="cadastro" action="index.jsp?url=esporigiCad">
     <fieldset>
         <legend>Esporigi</legend>
+      <p>
+        <label for="cNome">Esporigi: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
+      </p>
       <p>
         <label for="especieAgrupadaId">Espécie Agrupada: </label>
         <%
@@ -69,10 +72,7 @@
             <option value="<%out.print(especieAgrupada.getString("id"));%>"><%out.print(especieAgrupada.getString("nome"));%></option>
         <%}%>
         </select>                
-      </p>   
-      <p>
-        <label for="cNome">Esporigi: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
-      </p>
+      </p>      
       <p>
         <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"></textarea>
       </p>

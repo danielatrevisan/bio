@@ -24,13 +24,13 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "insert into espatual (especie_agrupada_id, nome, observacoes) values ('"+nEspecieAgrupada+"','"+nNome+"','"+nObs+"')";
+                sql = "insert into espatual (especie_agrupada_id, nome, observacoes) values ("+nEspecieAgrupada+",'"+nNome+"','"+nObs+"')";
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
                 stmt.execute();         
 
-                mensagem = "Espatual Cadastrada com Sucesso";
+                mensagem = "Espatual cadastrado com sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
@@ -59,12 +59,13 @@
                                     
                                     connection.close();
                                 } catch (SQLException sqle) {
-                                    out.println("Ocorreu um erro ao cadastrar a esporigi. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                    out.println("Ocorreu um erro ao cadastrar a espatual. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                                     sqle.printStackTrace();          
                             }
 
         %>
         <select name="nEspecieAgrupada" id="especieAgrupadaId">
+        <option value="null" selected></option>
         <%while(especieAgrupada.next()) { %>
             <option value="<%out.print(especieAgrupada.getString("id"));%>"><%out.print(especieAgrupada.getString("nome"));%></option>
         <%}%>
@@ -74,7 +75,7 @@
         <label for="cNome">Espatual: </label><input id="cNome" name="tNome" type="text" size="30" maxlength="255"/>
       </p>
       <p>
-        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
+        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"></textarea>
       </p>
     
     <% out.println(mensagem);%>

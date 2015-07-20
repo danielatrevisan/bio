@@ -164,14 +164,14 @@
                       </tr>
                       <tr>
                         <td width="150"><label for="tchuva">Chuva: </label><input id="tChuva" name="tChuva" type="text" size="10" maxlength="50"/></td>
-                        <td width="150"><label for="tTar">Temperatura do Ar: </label><input id="tTar" name="tTar" type="text" size="3" maxlength="50"/></td>
-                        <td width="150"><label for="tTagua">Temperatura da Água: </label><input id="tTagua" name="tAgua" type="text" size="3" maxlength="50"/></td>
+                        <td width="150"><label for="tTar">Temperatura do Ar (°C): </label><input id="tTar" name="tTar" type="text" size="3" maxlength="50"/></td>
+                        <td width="150"><label for="tTagua">Temperatura da Água (°C): </label><input id="tTagua" name="tAgua" type="text" size="3" maxlength="50"/></td>
                       </tr>
                       <tr>
-                        <td width="150"><label for="tTransp">Transparência: </label><input id="tTransp" name="tTransp" type="text" size="10" maxlength="50"/></td>
+                        <td width="150"><label for="tTransp">Transparência (m): </label><input id="tTransp" name="tTransp" type="text" size="10" maxlength="50"/></td>
                         <td width="150"><label for="tPh">PH: </label><input id="tPh" name="tPh" type="text" size="10" maxlength="50"/></td>
-                        <td width="150"><label for="tCond">Condutividade: </label><input id="tCond" name="tCond" type="text" size="9" maxlength="50"/></td>
-                        <td width="150"><label for="tOdmg">ODMG: </label><input id="tOdmg" name="tOdmg" type="text" size="9" maxlength="50"/></td>
+                        <td width="150"><label for="tCond">Condutividade <sub>(mS/cm)</sub>: </label><input id="tCond" name="tCond" type="text" size="9" maxlength="50"/></td>
+                        <td width="150"><label for="tOdmg">OD<sub>(mg/L)</sub>: </label><input id="tOdmg" name="tOdmg" type="text" size="9" maxlength="50"/></td>
                       </tr>                      
                     </table>
                 </fieldset>                

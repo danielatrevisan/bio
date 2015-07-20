@@ -46,7 +46,7 @@
                 <label for="cNome">Ordem: </label><input id="cNome" name="tNome" type="text" size="10" maxlength="255"/>
             </p>
             <p>
-                <label for="cObs">ObservaÃ§Ãµes: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
+                <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"></textarea>
             </p>
         
         <% out.println(mensagem);%>

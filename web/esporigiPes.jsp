@@ -31,7 +31,7 @@
 				
 		esporigi = stmt.executeQuery(); 
 		  while(esporigi.next()) {                    
-                    mensagem = mensagem + "<tr> <td>"+esporigi.getString("nome")+" </td> <td> "+esporigi.getString("spgroup")+" </td> <td> "+"</td> <td> <a href='index.jsp?url=especieAlt&idEspecie="+esporigi.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=especieDel&idEspecie="+esporigi.getString("id")+"'>Excluir</a></p> </td> </tr>";
+                    mensagem = mensagem + "<tr> <td>"+esporigi.getString("nome")+" </td> <td> "+esporigi.getString("spgroup")+" </td> <td> "+"</td> <td> <a href='index.jsp?url=esporigiAlt&idEsporigi="+esporigi.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=esporigiDel&idEsporigi="+esporigi.getString("id")+"'>Excluir</a></p> </td> </tr>";
                 }
                 
                 mensagem = mensagem + "</table>";

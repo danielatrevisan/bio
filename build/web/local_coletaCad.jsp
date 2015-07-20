@@ -51,10 +51,10 @@
         <label for="cSigla">Sigla: </label><input id="cSigla" name="tSigla" type="text" size="50" maxlength="255"/>
       </p>
       <p>
-        <label for="cMun">MuncÃ­pio: </label><input id="cSigla" name="tMun" type="text" size="50" maxlength="255"/>
+        <label for="cMun">Muncípio: </label><input id="cSigla" name="tMun" type="text" size="50" maxlength="255"/>
       </p>
       <p>
-        <label for="cObs">ObservaÃ§Ãµes: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
+        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
       </p>
       
     <% out.println(mensagem);%>

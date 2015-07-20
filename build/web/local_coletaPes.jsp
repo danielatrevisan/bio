@@ -30,7 +30,7 @@
 				
 		local = stmt.executeQuery(); 
 		  while(local.next()) {
-                    mensagem = mensagem + "<tr> <td>"+local.getString("nome")+" </td> <td> "+local.getString("sigla")+" </td> <td> "+local.getString("municipio")+" </td> <td> "+"</td> <td> <a href='index.jsp?url=localAlt&idLocal="+local.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=localDel&idLocal="+local.getString("id")+"'>Excluir</a></p> </td> </tr>";
+                    mensagem = mensagem + "<tr> <td>"+local.getString("nome")+" </td> <td> "+local.getString("sigla")+" </td> <td> "+local.getString("municipio")+" </td> <td> "+"</td> <td> <a href='index.jsp?url=local_coletaAlt&idLocal="+local.getString("id")+"'>Alterar</a>"+" | "+"<a href='index.jsp?url=local_coletaDel&idLocal="+local.getString("id")+"'>Excluir</a></p> </td> </tr>";
                     
                 }
                   

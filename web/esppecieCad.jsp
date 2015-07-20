@@ -31,7 +31,7 @@
 
                 stmt.execute();         
 
-                mensagem = "Esppecie Cadastrada com Sucesso";
+                mensagem = "Esppecie cadastrada com sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
@@ -45,6 +45,9 @@
 <form method="post" id="cadastro" action="index.jsp?url=esppecieCad">
     <fieldset>
         <legend>Esppecie</legend>
+      <p>
+        <label for="cNome">Esppecie: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
+      </p>
       <p>
         <label for="especieAgrupadaId">Espécie Agrupada: </label>
         <%
@@ -73,9 +76,6 @@
         <%}%>
         </select>               
       </p>   
-      <p>
-        <label for="cNome">Esppecie: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
-      </p>
       <p>
         <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"></textarea>
       </p>

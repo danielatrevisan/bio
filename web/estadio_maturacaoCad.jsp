@@ -40,12 +40,12 @@
 %>
 <form method="post" id="cadastro" action="index.jsp?url=estadio_maturacaoCad">
     <fieldset>
-        <legend>EstÃ¡dio de MaturaÃ§Ã£o</legend>      
+        <legend>Estádio de Maturação</legend>      
       <p>
         <label for="cNome">Nome: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
       </p>
       <p>
-        <label for="cObs">ObservaÃ§Ãµes: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
+        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"></textarea>
       </p>
     <% out.println(mensagem);%>
     <p>
