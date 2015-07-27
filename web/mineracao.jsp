@@ -1,8 +1,8 @@
+<%@page import="weka.associations.Apriori"%>
 <%@page import="weka.filters.supervised.attribute.AttributeSelection"%>
 <%@page import="weka.attributeSelection.*"%>
 <%@page import="weka.filters.*"%>
 <%@page import="weka.filters.unsupervised.attribute.Remove"%>
-<%@page import="weka.associations.PredictiveApriori"%>
 <%@page import="weka.core.Instances"%>
 <%@page import="weka.associations.AprioriItemSet"%>
 <%@page import="weka.core.FastVector"%>
@@ -23,7 +23,7 @@
 	query.setUsername("postgres");
 	query.setPassword("admin");
 
-	PredictiveApriori dado = new PredictiveApriori();
+	Apriori dado = new Apriori();
 	
 	//consulta = "select  l.nome as local,ap.nome as aparelho, a.smf, a.ph, coalesce(a.tagua, '') as tagua, a.cond, ab.nome as ambiente, g.nome as gne, m.nome as migraped, md.nome as migrad, gp.nome as guildaped, c.nome as ctrof, f.nome as familia, e.nome as especie from biotico b      left join abiotico a on b.abiotico_id = a.id      left join local_coleta l on a.local_coleta_id = l.id       left join aparelho ap on b.aparelho_id = ap.id      left join ambiente ab on b.ambiente_id = ab.id      left join genero_especie g on b.genero_especie_id = g.id       left join migraped m on b.migraped_id = m.id      left join migrad md on b.migrad_id = md.id      left join guildaped gp on b.guildaped_id = gp.id      left join ctrof c  on  b.ctrof_id = c.id      left join familia f on b.familia_id = f.id       left join especie e on b.especie_id = e.id";
 	//consulta = "select coalesce(pj.nome, '') as projeto, coalesce(lc.nome, '') as local, coalesce(ab.nome, '') as ambiente, coalesce(pt.nome, '') as ponto, b.horario, coalesce(ep.nome, '') as especie, coalesce(ct.nome, '') as ctrof, coalesce(gp.nome) as guildaped, coalesce(md.nome) as migrad, coalesce(mp.nome) as migraped, coalesce(ap.nome, '') as aparelho, cast(b.lt as text), cast(b.ls as text), cast(b.wt as text), b.sexo, cast(b.wg as text), cast(b.rgs as text), cast(b.gre as text), cast(b.gri as text), cast(b.gv as text), cast(b.we as text), cast(b.wv as text), coalesce(fm.nome, '') as familia, coalesce(ge.nome) as gnespecie, coalesce(a.planc, '') as planc, coalesce(a.rede, '') as rede, coalesce(a.margem, '') as margem, coalesce(a.smf, '') as smf, coalesce(a.ativ, '') as atividade, coalesce(a.vento, '') as vento, coalesce(a.nebulosidade, '') as nebulosidade, coalesce(a.chuva, '') as chuva, coalesce(a.tar, '') as tar, coalesce(a.tagua, '') as tagua, coalesce(a.profundidade, '') as profundidade, coalesce(a.odmg, '') as odmg, coalesce(a.transp, '') as transparencia, coalesce(a.ph, '') as ph, coalesce(a.cond, '') as condutividade from biotico b left join genero_especie ge on b.genero_especie_id = ge.id left join migraped mp on b.migraped_id = mp.id left join migrad md on b.migrad_id = md.id left join ctrof ct on b.ctrof_id = ct.id left join guildaped gp on b.guildaped_id = gp.id left join aparelho ap on b.aparelho_id = ap.id left join ambiente ab on b.ambiente_id = ab.id left join familia fm on b.familia_id = fm.id left join ordem od on fm.ordem_id = od.id left join especie ep on b.especie_id = ep.id left join local_coleta lc on b.local_coleta_id = lc.id left join projeto pj on b.projeto_id = pj.id left join ponto pt on b.ponto_id = pt.id left join abiotico a on b.abiotico_id = a.id --where --b.local_coleta_id in (strLocal) and b.data_coleta between 'tPeriodoIni-01' and 'tPeriodoFim' and local_coleta";
