@@ -1,8 +1,8 @@
-<%@page import="weka.associations.Apriori"%>
 <%@page import="weka.filters.supervised.attribute.AttributeSelection"%>
 <%@page import="weka.attributeSelection.*"%>
 <%@page import="weka.filters.*"%>
 <%@page import="weka.filters.unsupervised.attribute.Remove"%>
+<%@page import="weka.associations.Apriori"%>
 <%@page import="weka.core.Instances"%>
 <%@page import="weka.associations.AprioriItemSet"%>
 <%@page import="weka.core.FastVector"%>
@@ -160,7 +160,8 @@
 				%>
 				<td><input type="checkbox" name="field" value="<%=i%>"
 					<% if(fields != null && Arrays.asList(fields).contains(String.valueOf(i))){ out.println (" checked "); } %> />
-					<% out.println(data.attribute(i).name()); %></td>
+					<% out.println(data.attribute(i).name()); %>
+				</td>
 				<%
 		
 			} 
@@ -181,24 +182,26 @@
 							<option value="3">Conviction</option>
 					</select>
 					</td>
-					<td>Confiança <input name=minMetric type="text" value="0.9" />
+					<td >Valor mínimo da métrica <input name=minMetric type="text" 
+					value="<% if(request.getParameter("minMetric") == null){ out.println ("0.9"); }else out.println (request.getParameter("minMetric"));  %>" />
 					</td>
 				</tr>
 				<tr>
-					<td>Nº de Regras <input name="numRules" type="text" value="10" />
+					<td>Nº de Regras <input name="numRules" type="text" 
+					value="<% if(request.getParameter("numRules") == null){ out.println ("10"); }else out.println (request.getParameter("numRules"));  %>" />
 					</td>
 					<td>Suporte M&iacute;nimo <input name="minSupport" type="text"
-						value="0.1" />
+						value="<% if(request.getParameter("minSupport") == null){ out.println ("0.1"); }else out.println (request.getParameter("minSupport"));  %>" />
 					</td>
 					<td>Suporte M&aacute;ximo <input name="maxSupport" type="text"
-						value="1.0" />
+						value="<% if(request.getParameter("maxSupport") == null){ out.println ("1.0"); }else out.println (request.getParameter("maxSupport"));  %>" />
 					</td>
 				</tr>
 			</table>
 			<p>&nbsp;</p>
 			<p>
 				<input class="botao-form" id="btEnvia" name="botao" type="Submit"
-					value="SQL" />
+					value="Minerar" />
 			</p>
 		</fieldset>
 </form>
