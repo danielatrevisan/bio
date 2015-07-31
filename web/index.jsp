@@ -28,7 +28,9 @@
     <!-- folhas de estilo -->
         <link rel="stylesheet" type="text/css" href="css/_reset.css"  />
         <link rel="stylesheet" type="text/css" href="css/_estilo.css"  />
-        <link rel="stylesheet" href="css/css3menu1/style.css" type="text/css" /><style type="text/css">._css3m{display:none}</style>
+        <link rel="stylesheet" href="css/css3menu1/style.css" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"  />
+        <style type="text/css">._css3m{display:none}</style>
     <!-- /folhas de estilo -->
 </head>
 <body>
@@ -333,5 +335,12 @@
         <!-- /rodape -->        
 
     </div>
+    <script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/localization/datepicker-pt-BR.js"></script>
+	<script src="js/jquery.maskedinput.min.js"></script>
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/localization/messages_pt_BR.min.js"></script>
+	<script src="js/main.js"></script>
 </body>
 </html>
