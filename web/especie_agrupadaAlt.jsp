@@ -29,7 +29,7 @@
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.execute();         
 
-                mensagem = "Espécie Agrupada alterado com sucesso";
+                mensagem = "Espécie Agrupada alterada com sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {

@@ -13,7 +13,7 @@
     String tPeriodoIni = request.getParameter("tPeriodoIni");
     String tPeriodoFim = request.getParameter("tPeriodoFim");
     String tProjeto = request.getParameter("tProjeto");    
-    
+
     String ultimoDia = "";
     
     String botao = request.getParameter("botao");
@@ -37,30 +37,31 @@
     Date today = new Date();  
         int mes,ano;
         ano= Integer.parseInt(tPeriodoFim.split("-")[0]);
-        mes = Integer.parseInt(tPeriodoFim.split("-")[1]);
+        mes= Integer.parseInt(tPeriodoFim.split("-")[1]);
         Calendar calendar = Calendar.getInstance();  
         calendar.setTime(today);  
 
         calendar.set(Calendar.YEAR, ano);  
         calendar.set(Calendar.DAY_OF_MONTH, 1);  
         calendar.set(Calendar.MONTH, mes);
-        calendar.add(Calendar.MONTH, 1);
+        //calendar.add(Calendar.MONTH, 1);
         calendar.add(Calendar.DATE, -1);  
 
         Date lastDayOfMonth = calendar.getTime();  
 
         DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
         ultimoDia=sdf.format(lastDayOfMonth);
-  }  catch (Exception e) {                
+    }  catch (Exception e) {                
                 mensagem = "Preencha ao menos um campo do formulário<br/>";
                 //e.printStackTrace();
                 //out.print(e.toString());
             
         } 
         try { 
-                tPeriodoFim = ultimoDia;
+                tPeriodoFim = ultimoDia; 
                 Connection connection = PosFactory.getConnection();      
                 
+                //Pesquisa por local - periodo - projeto
                 if((tLocalColeta.equals(""))&&((tPeriodoIni.equals("")))&&((tPeriodoFim.equals("")))&&(tProjeto.equals(""))){                     
                     sql = "select a.id, coalesce(p.nome, '') as projeto, coalesce(a.amostra, '') as amostra, coalesce(a.planc, '') as planc, coalesce(a.rede, '') as rede, l.nome as local, a.data_coleta, a.hora, coalesce(a.margem, '') as margem, coalesce(a.smf, '') as smf, coalesce(a.ativ, '') as ativ, coalesce(a.vento, '') as vento, coalesce(a.nebulosidade, '') as nebulosidade, coalesce(a.chuva, '') as chuva, coalesce(a.tar, '') as tar, coalesce(a.tagua, '') as tagua, coalesce(a.profundidade, '') as profundidade, coalesce(a.odmg, '') as odmg, coalesce(a.transp, '') as transparencia, coalesce(a.ph, '') as ph, coalesce(a.cond, '') as condutividade from abiotico a left join projeto p on a.projeto_id = p.id left join local_coleta l on a.local_coleta_id = l.id order by p.nome, l.nome, a.data_coleta, a.hora";
                 }                
@@ -73,7 +74,7 @@
                     sql = "select a.id, coalesce(p.nome, '') as projeto, coalesce(a.amostra, '') as amostra, coalesce(a.planc, '') as planc, coalesce(a.rede, '') as rede, l.nome as local, a.data_coleta, a.hora, coalesce(a.margem, '') as margem, coalesce(a.smf, '') as smf, coalesce(a.ativ, '') as ativ, coalesce(a.vento, '') as vento, coalesce(a.nebulosidade, '') as nebulosidade, coalesce(a.chuva, '') as chuva, coalesce(a.tar, '') as tar, coalesce(a.tagua, '') as tagua, coalesce(a.profundidade, '') as profundidade, coalesce(a.odmg, '') as odmg, coalesce(a.transp, '') as transparencia, coalesce(a.ph, '') as ph, coalesce(a.cond, '') as condutividade from abiotico a left join projeto p on a.projeto_id = p.id left join local_coleta l on a.local_coleta_id = l.id where projeto_id = '"+tProjeto+"' and local_coleta_id =  '"+tLocalColeta+"' order by p.nome, l.nome, a.data_coleta, a.hora";
                 }
                 //Pesquisa por Local e data
-                if((tLocalColeta!="")&&(!(!(tPeriodoIni.equals("")))&&(!(tPeriodoFim.equals(""))))&&(tProjeto=="")){                    
+                if((tLocalColeta!="")&&((!(tPeriodoIni.equals("")))&&(!(tPeriodoFim.equals(""))))&&(tProjeto=="")){                    
                     sql = "select a.id, coalesce(p.nome, '') as projeto, coalesce(a.amostra, '') as amostra, coalesce(a.planc, '') as planc, coalesce(a.rede, '') as rede, l.nome as local, a.data_coleta, a.hora, coalesce(a.margem, '') as margem, coalesce(a.smf, '') as smf, coalesce(a.ativ, '') as ativ, coalesce(a.vento, '') as vento, coalesce(a.nebulosidade, '') as nebulosidade, coalesce(a.chuva, '') as chuva, coalesce(a.tar, '') as tar, coalesce(a.tagua, '') as tagua, coalesce(a.profundidade, '') as profundidade, coalesce(a.odmg, '') as odmg, coalesce(a.transp, '') as transparencia, coalesce(a.ph, '') as ph, coalesce(a.cond, '') as condutividade from abiotico a left join projeto p on a.projeto_id = p.id left join local_coleta l on a.local_coleta_id = l.id where local_coleta_id =  '"+tLocalColeta+"' and data_coleta between '"+tPeriodoIni+"-01' and '"+tPeriodoFim+"' order by p.nome, l.nome, a.data_coleta, a.hora";
                 }
                 //Pesquisa por Projeto Local e data

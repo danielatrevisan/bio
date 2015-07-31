@@ -14,7 +14,7 @@
     
     String botao = request.getParameter("botao");
     Connection connection = null;
-    
+    String strId="";
 
     String acao = "";
     if(botao==null){
@@ -27,7 +27,7 @@
         try {
                connection = PosFactory.getConnection();	
 
-                sql = "update especie set nome='"+nNome+"', especie_agrupada_id = '"+nEspecieAgrupada+"', observacoes='"+nObs+"' where id="+idEspecie;
+                sql = "update especie set nome='"+nNome+"', especie_agrupada_id = "+nEspecieAgrupada+", observacoes='"+nObs+"' where id="+idEspecie;
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.execute();         
@@ -87,10 +87,19 @@
 
         %>
         <select name="nEspecieAgrupada" id="especieAgrupadaId">
-        <%while(especieAgrupada.next()) { %>
-            <%if(especie.getString("especie_agrupada_id").equals(especieAgrupada.getString("id")))
-            {%>
-            <option value="<% out.print(especieAgrupada.getString("id"));%>" selected><%out.print(especieAgrupada.getString("nome"));%></option>
+        <%
+          if(especie.getObject("especie_agrupada_id")==null){
+        %>
+            <option value="null" selected>&nbsp;</option>                
+            <%
+                strId="null";
+            }else
+               strId=especie.getString("especie_agrupada_id");                
+               while(especieAgrupada.next()) { %>
+               <%
+                 if(strId.equals(especieAgrupada.getString("id")))
+               {%>
+               <option value="<% out.print(especieAgrupada.getString("id"));%>" selected><%out.print(especieAgrupada.getString("nome"));%></option>
             <% }else {%>
             <option value="<%out.print(especieAgrupada.getString("id"));%>"><%out.print(especieAgrupada.getString("nome"));%></option>
         <%}}%>

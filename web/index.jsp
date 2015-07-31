@@ -209,6 +209,9 @@
                 <%if(link.equals("familiaAlt")){%>
 				 	<%@include file="familiaAlt.jsp"%>
 				<%}%>
+                <%if(link.equals("familiaDel")){%>
+				 	<%@include file="familiaDel.jsp"%>
+				<%}%>
                 <%if(link.equals("genero_especieCad")){%>
 				 	<%@include file="genero_especieCad.jsp"%>
 				<%}%>
@@ -241,6 +244,9 @@
 				<%}%>
                 <%if(link.equals("local_coletaPes")){%>
 				 	<%@include file="local_coletaPes.jsp"%>
+				<%}%>
+                <%if(link.equals("local_coletaDel")){%>
+				 	<%@include file="local_coletaDel.jsp"%>
 				<%}%>
                 <%if(link.equals("migradCad")){%>
 				 	<%@include file="migradCad.jsp"%>

@@ -28,7 +28,7 @@
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.execute();         
 
-                mensagem = "Especie excluída com sucesso";
+                mensagem = "Espécie excluída com sucesso";
              
                 
                 connection.close();

@@ -11,6 +11,12 @@
 	
 	//Trata a Ação do Botão
     
+    mensagem = request.getParameter("mensagem");
+    if (mensagem==null)
+    {
+        mensagem="";
+    }
+    
     String acao = "";
     if(botao==null){
         acao = "nada";
@@ -23,7 +29,7 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "select e.id, e.nome, em.nome as estadio_mat from estadio e left join estadio_maturacao em on e.estadio_maturacao_id = em.id where upper(e.nome) like upper('%"+cNome+"%') order by e.nome";
+                sql = "select e.id, e.nome, coalesce(em.nome, '') as estadio_mat from estadio e left join estadio_maturacao em on e.estadio_maturacao_id = em.id where upper(e.nome) like upper('%"+cNome+"%') order by e.nome";
                 
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);

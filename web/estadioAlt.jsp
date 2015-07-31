@@ -14,7 +14,8 @@
     
     String botao = request.getParameter("botao");
     Connection connection = null;
-    
+    String strId="";
+
 
     String acao = "";
     if(botao==null){
@@ -27,7 +28,7 @@
         try {
                connection = PosFactory.getConnection();	
 
-                sql = "update estadio set nome='"+nNome+"', estadio_maturacao_id = '"+nEstadioMaturacao+"', observacoes='"+nObs+"' where id="+idEstadio;
+                sql = "update estadio set nome='"+nNome+"', estadio_maturacao_id = "+nEstadioMaturacao+", observacoes='"+nObs+"' where id="+idEstadio;
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.execute();         
@@ -84,15 +85,24 @@
                     out.println("Ocorreu um erro ao alterar estádio. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
                     sqle.printStackTrace();          
                     }
-
-        %>
+               estadioMaturacao.next();            
+        %>        
         <select name="nEstadioMaturacao" id="estadioMaturacaoId">
-        <%while(estadioMaturacao.next()) { %>
-            <%if(estadio.getString("estadio_maturacao_id").equals(estadioMaturacao.getString("id")))
-            {%>
-            <option value="<% out.print(estadioMaturacao.getString("id"));%>" selected><%out.print(estadioMaturacao.getString("nome"));%></option>
-            <% }else {%>
-            <option value="<%out.print(estadioMaturacao.getString("id"));%>"><%out.print(estadioMaturacao.getString("nome"));%></option>
+        <%  
+            if(estadio.getObject("estadio_maturacao_id")==null){
+                %>
+                <option value="null" selected>&nbsp;</option>                
+            <%
+                strId="null";
+            }else
+               strId=estadio.getString("estadio_maturacao_id");                
+               while(estadioMaturacao.next()) { %>
+               <%
+                 if(strId.equals(estadioMaturacao.getString("id")))
+               {%>
+                   <option value="<% out.print(estadioMaturacao.getString("id"));%>" selected><%out.print(estadioMaturacao.getString("nome"));%></option>
+               <% }else {%>
+               <option value="<%out.print(estadioMaturacao.getString("id"));%>"><%out.print(estadioMaturacao.getString("nome"));%></option>
         <%}}%>
         </select>
       </p>   

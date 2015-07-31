@@ -25,7 +25,7 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "insert into familia (ordem_id, nome, observacoes) values ('"+nOrdem+"','"+nNome+"','"+nObs+"')";
+                sql = "insert into familia (ordem_id, nome, observacoes) values ("+nOrdem+",'"+nNome+"','"+nObs+"')";
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -44,6 +44,9 @@
 <form method="post" id="cadastro" action="index.jsp?url=familiaCad">
     <fieldset>
         <legend>Fam&iacute;lia</legend>
+        <p>
+           <label for="cNome">Fam&iacute;lia: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
+       </p>
         <p>
            <label for="ordemId">Ordem: </label>
            <%
@@ -65,16 +68,14 @@
 
         %>
         <select name="nOrdem" id="ordemId">
+        <option value="null" selected></option>
         <%while(ordem.next()) { %>
             <option value="<%out.print(ordem.getString("id"));%>"><%out.print(ordem.getString("nome"));%></option>
         <%}%>
         </select>             
-        </p>           
+        </p>                  
        <p>
-           <label for="cNome">Fam&iacute;lia: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
-       </p>
-       <p>
-           <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>
+           <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"></textarea>
       </p>
       <% out.println(mensagem);%>
       <p>

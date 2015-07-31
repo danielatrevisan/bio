@@ -14,7 +14,7 @@
     
     String botao = request.getParameter("botao");
     Connection connection = null;
-    
+    String strId="";
 
     String acao = "";
     if(botao==null){
@@ -27,12 +27,12 @@
         try {
                connection = PosFactory.getConnection();	
 
-                sql = "update familia set nome='"+nNome+"', ordem_id = '"+nOrdem+"', observacoes='"+nObs+"' where id="+idFamilia;
+                sql = "update familia set nome='"+nNome+"', ordem_id = "+nOrdem+", observacoes='"+nObs+"' where id="+idFamilia;
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.execute();         
 
-                mensagem = "Estádio alterado com sucesso";
+                mensagem = "Família alterado com sucesso";
 
                 connection.close();
             } catch (SQLException sqle) {
@@ -65,7 +65,9 @@
 <form method="post" id="cadastro" action="index.jsp?url=familiaAlt">
     <fieldset>
         <legend>Fam&iacute;lia</legend>
-        
+        <p>
+        <label for="cNome">Família: </label><input id="cNome" name="tNome" type="text" value="<%out.print(familia.getString("nome")); %>" size="30" maxlength="255"/>
+        </p>
         <p>
         <input id="idFamilia" name="idFamilia" type="hidden" value="<% out.print(idFamilia); %>" />
         <label for="ordemId">Ordem: </label>
@@ -87,21 +89,28 @@
                     }
 
         %>
-        <select name="nOrdem" id="ordemId">
-        <%while(ordem.next()) { %>
-            <%if(familia.getString("ordem_id").equals(ordem.getString("id")))
-            {%>
-            <option value="<% out.print(ordem.getString("id"));%>" selected><%out.print(ordem.getString("nome"));%></option>
-            <% }else {%>
-            <option value="<%out.print(ordem.getString("id"));%>"><%out.print(ordem.getString("nome"));%></option>
+        <select name="nOrdem" id="ordemId">    
+        <option value="null" selected></option>
+        <%  
+            if(familia.getObject("ordem_id")==null){
+                %>
+                <option value="null" selected>&nbsp;</option>                
+            <%
+                strId="null";
+            }else
+               strId=familia.getString("ordem_id");                
+               while(ordem.next()) { %>
+               <%
+                 if(strId.equals(ordem.getString("id")))
+               {%>
+                   <option value="<% out.print(ordem.getString("id"));%>" selected><%out.print(ordem.getString("nome"));%></option>
+               <% }else {%>
+               <option value="<%out.print(ordem.getString("id"));%>"><%out.print(ordem.getString("nome"));%></option>
         <%}}%>
         </select>
-      </p>   
+      </p>         
       <p>
-        <label for="cNome">Família: </label><input id="cNome" name="tNome" type="text" value="<%out.print(familia.getString("nome")); %>" size="30" maxlength="255"/>
-      </p>
-      <p>
-        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" cols="50" maxlength="1000"><%out.print(familia.getString("observacoes")); %></textarea>
+        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" cols="50" maxlength="1000"><%out.print(familia.getString("observacoes"));%></textarea>
       </p>
       
       <% out.println(mensagem);%>

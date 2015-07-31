@@ -51,7 +51,7 @@
         <label for="cSigla">Sigla: </label><input id="cSigla" name="tSigla" type="text" size="50" maxlength="255"/>
       </p>
       <p>
-        <label for="cMun">Muncípio: </label><input id="cSigla" name="tMun" type="text" size="50" maxlength="255"/>
+        <label for="cMun">Muncípio: </label><input id="cSigla" name="tMunicipio" type="text" size="50" maxlength="255"/>
       </p>
       <p>
         <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"> </textarea>

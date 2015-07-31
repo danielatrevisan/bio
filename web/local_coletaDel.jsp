@@ -1,6 +1,5 @@
 <%
 	//Inicializa VariÃ¡veis
-       
     String sql = "";
     String mensagem = "";
     
@@ -8,15 +7,12 @@
         
     String idLocal = request.getParameter("idLocal");
              
-    String nSigla= request.getParameter("nSigla");
-    String nMunicipio= request.getParameter("nMunicipio");
-    String nNome = request.getParameter("nNome");
-    String nObs = request.getParameter("nObs");
+    String nNome = request.getParameter("tNome");
+    String nObs = request.getParameter("tObs");
     
     String botao = request.getParameter("botao");
-    Connection connection = null;
+    Connection connection;
     
-
     String acao = "";
     if(botao==null){
         acao = "nada";
@@ -24,20 +20,22 @@
         acao = request.getParameter("botao");
     }
         
-    if(acao.equals("Salvar")) {
+    if(acao.equals("Excluir")) {
         try {
                connection = PosFactory.getConnection();	
 
-                sql = "update local_coleta set nome='"+nNome+"', sigla = '"+nSigla+"', municipio = '"+nMunicipio+"', observacoes='"+nObs+"' where id="+idLocal;
-
+                sql = "delete from local_coleta where id="+idLocal;
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.execute();         
 
-                mensagem = "Local alterado com sucesso";
-
+                mensagem = "Local coleta excluído com sucesso";
+             
+                
                 connection.close();
+                request.getRequestDispatcher("index.jsp?url=local_coletaPes&mensagem="+mensagem).forward(request, response);
+               // response.sendRedirect("index.jsp?url=local_coletaPes");
             } catch (SQLException sqle) {
-                mensagem = "Ocorreu um erro ao alterar local. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
+                mensagem = "Ocorreu um erro ao excluir local coleta. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
                 sqle.printStackTrace();          
         } 
     }        
@@ -56,14 +54,16 @@
 					connection.close();
 				} catch (SQLException sqle) {
 					out.write("Ocorreu um erro - Entre em contato com o Administrador do Sistema: email@email.com.br!<br><br>Exception::<br>" + sqle);
-					sqle.printStackTrace();          
+					sqle.printStackTrace();         
 			}
 	
-             local.next(); 
-
+                
+           
+            local.next();
+           
 %>
 
-<form method="post" id="cadastro" action="index.jsp?url=local_coletaAlt">
+<form method="post" id="cadastro" action="index.jsp?url=local_coletaDel">
     <fieldset>
         <legend>Local da Coleta</legend>
       <p> <input id="idLocal" name="idLocal" type="hidden" value="<% out.print(idLocal); %>" />
@@ -73,15 +73,15 @@
         <label for="cSigla">Sigla: </label><input id="cSigla" name="nSigla" type="text" value="<%out.print(local.getString("sigla")); %>" size="50" maxlength="255"/>
       </p>
       <p>
-        <label for="cMun">Muncípio: </label><input id="cMunicipio" name="nMunicipio" type="text" value="<%out.print(local.getString("municipio")); %>" size="50" maxlength="255"/>
+        <label for="cMun">Muncípio: </label><input id="cMunicipio" name="nMun" type="text" value="<%out.print(local.getString("municipio")); %>" size="50" maxlength="255"/>
       </p>
       <p>
-        <label for="cObs">Observações: </label><textarea id="cObs" name="nObs"  rows="10" cols="50" maxlength="1000"><%out.print(local.getString("observacoes")); %></textarea>
+        <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" cols="50" maxlength="1000"><%out.print(local.getString("observacoes")); %></textarea>
       </p>
       
     <% out.println(mensagem);%>
     <p>
-    <input class="botao-form" id="btEnvia" name="botao" type="Submit" value="Salvar"/> 
+    <input class="botao-form" id="btEnvia" name="botao" type="Submit" value="Excluir"/> 
     </p>
     </fieldset>
 </form>

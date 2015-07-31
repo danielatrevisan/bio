@@ -50,7 +50,7 @@
                 Connection connection = PosFactory.getConnection();
 
                 sql = "insert into biotico (genero_especie_id, migraped_id, migrad_id, guildaped_id, ctrof_id, aparelho_id, estadio_id, ambiente_id, esporigi_id, familia_id, especie_id, esppecie_id, espatual_id,ponto_id, local_coleta_id, projeto_id, data_coleta, horario, numero, lt, ls, wt, sexo, wg, gre, gri, we, wv)"
-                        + "values ('" +nGeneroEspecie+"', '" +nMigraped+"', '" +nMigrad+"', '" +nGuildaped+"', '" +nCtrof+"', '" +nAparelho+"', '" +nEstadio+"', '" +nAmbiente+"', '" +nEsporigi+"', '" +nFamilia+"', '" +nEspecie+"', '" +nEsppecie+"', '" +nEspatual+"', '" +nPonto+"', '" +nLocalColeta+"', '" +nProjeto+"', '" +nData+"', '" +nHorario+"', '" +nNumero+"', '" +nLt+"','" +nLs+"','" +nWt+"', '" +nSexo+"', '" +nWg+"','" +nGre+"','" +nGri+"','" +nWe+"','" +nWv+"')";
+                        + "values ("+nGeneroEspecie+", "+nMigraped+", "+nMigrad+", "+nGuildaped+", "+nCtrof+", "+nAparelho+", "+nEstadio+", "+nAmbiente+", "+nEsporigi+", "+nFamilia+", "+nEspecie+", "+nEsppecie+", "+nEspatual+", "+nPonto+", "+nLocalColeta+", "+nProjeto+", '"+nData+"', '"+nHorario+"', '"+nNumero+"', '"+nLt+"','"+nLs+"','"+nWt+"', '"+nSexo+"', '"+nWg+"','"+nGre+"','"+nGri+"','"+nWe+"','"+nWv+"')";
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -60,7 +60,7 @@
 
                 connection.close();
             } catch (SQLException sqle) {
-                mensagem = "Ocorreu um erro ao cadastrar dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle;
+                mensagem = "Ocorreu um erro ao cadastrar dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>"+ sqle;
                 sqle.printStackTrace();          
         } out.println(sql);
     }        
@@ -90,12 +90,12 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>"+ sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
                 <select name="nProjetoId" id="projetoId">
-                    <option> </option>
+                    <option value="null" selected></option>
                     <%while(projeto.next()) { %>
                     <option value="<%out.print(projeto.getString("id"));%>"><%out.print(projeto.getString("nome"));%></option>
                 <%}%>
@@ -115,14 +115,14 @@
                                     
                                     connection.close();
                                 } catch (SQLException sqle) {
-                                    out.println("Ocorreu um erro ao cadastrar o Abiótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                    out.println("Ocorreu um erro ao cadastrar o Abiótico. Entre em contato com o Administrador do Sistema. Erro: <br/>"+ sqle);
                                     sqle.printStackTrace();          
                             }
 
                         %>
 
                         <select name="nLocalColetaId" id="localColetaId">
-                            <option> </option> 
+                            <option value="null" selected></option> 
                             <%while(local.next()) { %>
                                 <option value="<%out.print(local.getString("id"));%>"><%out.print(local.getString("nome"));%> - <%out.print(local.getString("sigla"));%></option>
                             <%}%>
@@ -142,12 +142,12 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>"+ sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
                 <select name="nAmbienteId" id="ambienteId">
-                    <option> </option> 
+                    <option value="null" selected>&nbsp;</option> 
                     <%while(amb.next()) { %>
                     <option value="<%out.print(amb.getString("id"));%>"><%out.print(amb.getString("nome"));%></option>
                 <%}%>
@@ -160,7 +160,7 @@
                         try {
                             Connection connection = PosFactory.getConnection();
 
-                            sql = "select id, nome from ponto";
+                            sql = "select id, nome from ponto order by nome";
                                     
                             PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -168,12 +168,12 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>"+ sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
                 <select name="nPontoId" id="pontoId">
-                    <option> </option> 
+                    <option value="null" selected></option> 
                     <%while(ponto.next()) { %>
                     <option value="<%out.print(ponto.getString("id"));%>"><%out.print(ponto.getString("nome"));%></option>
                 <%}%>
@@ -192,17 +192,17 @@
                                     
                                     connection.close();
                                 } catch (SQLException sqle) {
-                                    out.println("Ocorreu um erro ao cadastrar biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                    out.println("Ocorreu um erro ao cadastrar biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>"+ sqle);
                                     sqle.printStackTrace();          
                             }
 
                         %>
                         <select name="tAparelho" id="aparelhoId">
-                        <option></option>
+                        <option value="null" selected></option>
                         <%while(aparelho.next()) { %>
                             <option value="<%out.print(aparelho.getString("id"));%>"><%out.print(aparelho.getString("aparelho"));%> - <%out.print(aparelho.getString("equipamento"));%></option>
                         <%}%>
-                        </select>               
+                        </select>
             </p>
         </fieldset>  
         <fieldset>
@@ -221,12 +221,12 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>"+ sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
                 <select name="nGeneroEspecieId" id="generoEspecieId">
-                    <option> </option> 
+                    <option value="null" selected></option> 
                     <%while(gne.next()) { %>
                     <option value="<%out.print(gne.getString("id"));%>"><%out.print(gne.getString("nome"));%></option>
                 <%}%>
@@ -246,12 +246,12 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>"+ sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
                 <select name="nMigrapedId" id="migrapedId">
-                    <option> </option> 
+                    <option value="null" selected></option> 
                     <%while(migraped.next()) { %>
                     <option value="<%out.print(migraped.getString("id"));%>"><%out.print(migraped.getString("nome"));%></option>
                 <%}%>
@@ -271,12 +271,12 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>"+ sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
                 <select name="nMigradId" id="migradId">
-                    <option> </option> 
+                    <option value="null" selected></option> 
                     <%while(migrad.next()) { %>
                     <option value="<%out.print(migrad.getString("id"));%>"><%out.print(migrad.getString("nome"));%></option>
                 <%}%>
@@ -297,12 +297,12 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>"+ sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
                 <select name="nGuildapedId" id="guildapedId">
-                    <option> </option> 
+                    <option value="null" selected></option> 
                     <%while(guilda.next()) { %>
                     <option value="<%out.print(guilda.getString("id"));%>"><%out.print(guilda.getString("nome"));%></option>
                 <%}%>
@@ -322,12 +322,12 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>"+ sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
                 <select name="nCtrofId" id="ctrofId">
-                    <option> </option> 
+                    <option value="null" selected></option> 
                     <%while(ctrof.next()) { %>
                     <option value="<%out.print(ctrof.getString("id"));%>"><%out.print(ctrof.getString("nome"));%></option>
                 <%}%>
@@ -347,12 +347,12 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>"+ sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
                 <select name="nFamiliaId" id="familiaId">
-                    <option> </option> 
+                    <option value="null" selected></option> 
                     <%while(familia.next()) { %>
                     <option value="<%out.print(familia.getString("id"));%>"><%out.print(familia.getString("fam"));%> - <%out.print(familia.getString("ord"));%></option>
                 <%}%>
@@ -373,12 +373,12 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>"+ sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
                 <select hidden name="nEsporigiId" id="esporigiId"> 
-                    <option> </option>
+                    <option value="null" selected></option>
                     <%while(esporigi.next()) { %>
                     <option value="<%out.print(esporigi.getString("id"));%>"><%out.print(esporigi.getString("esporigi"));%> - <%out.print(esporigi.getString("especie_agrupada"));%></option>
                 <%}%>
@@ -398,12 +398,12 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>"+ sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
                 <select name="nEspecieId" id="especieId"> 
-                    <option> </option>
+                    <option value="null" selected></option>
                     <%while(especie.next()) { %>
                     <option value="<%out.print(especie.getString("id"));%>"><%out.print(especie.getString("especie"));%> - <%out.print(especie.getString("especie_agrupada"));%></option>
                 <%}%>
@@ -424,12 +424,12 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>"+ sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
                 <select hidden name="nEsppecieId" id="esppecieId"> 
-                    <option> </option>
+                    <option value="null" selected></option>
                     <%while(esppecie.next()) { %>
                     <option value="<%out.print(esppecie.getString("id"));%>"><%out.print(esppecie.getString("especie"));%> - <%out.print(esppecie.getString("especie_agrupada"));%></option>
                 <%}%>
@@ -449,12 +449,12 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>"+ sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
                 <select hidden name="nEspatualId" id="espatualId">
-                    <option> </option>
+                    <option value="null" selected></option>
                     <%while(espatual.next()) { %>
                     <option value="<%out.print(espatual.getString("id"));%>"><%out.print(espatual.getString("especie"));%> - <%out.print(espatual.getString("especie_agrupada"));%></option>
                 <%}%>
@@ -474,12 +474,12 @@
                                     
                             connection.close();
                             } catch (SQLException sqle) {
-                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>" + sqle);
+                                out.println("Ocorreu um erro ao cadastrar o dado biótico. Entre em contato com o Administrador do Sistema. Erro: <br/>"+ sqle);
                                 sqle.printStackTrace();          
                             }
                 %>
                 <select name="nEstadioId" id="estadioId">   
-                    <option> </option>
+                    <option value="null" selected></option>
                     <%while(estadio.next()) { %>
                     <option value="<%out.print(estadio.getString("id"));%>"><%out.print(estadio.getString("nome"));%> - <%out.print(estadio.getString("maturacao"));%></option>
                 <%}%>

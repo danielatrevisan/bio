@@ -25,9 +25,10 @@
                connection = PosFactory.getConnection();	
 
                 sql = "delete from espatual where id="+idEspatual;
+                out.println("teste1");
                 PreparedStatement stmt = connection.prepareStatement(sql);
-                stmt.execute();         
-
+                out.println("teste");
+                stmt.execute();                         
                 mensagem = "Espatual excluída com sucesso";
              
                 

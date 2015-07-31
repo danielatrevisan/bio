@@ -25,7 +25,7 @@
                connection = PosFactory.getConnection();	
 
                 sql = "update ordem set nome='"+nNome+"', observacoes='"+nObs+"' where id="+idOrdem;
-out.println(sql);    
+
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.execute();         
 

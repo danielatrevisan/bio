@@ -23,7 +23,7 @@
         try {
                 Connection connection = PosFactory.getConnection();
 
-                sql = "select id, nome, coalesce(sigla, '') as sigla, coalesce(municipio, '') as municipio from local_coleta where upper(nome) like upper('%"+cNome+"%') order by nome";
+                sql = "select id, nome, coalesce(sigla, '') as sigla, coalesce(municipio, '') as municipio from local_coleta where upper(nome) like upper('%"+cNome+"%') or upper(sigla) like upper('%"+cNome+"%') or upper(municipio) like upper('%"+cNome+"%') order by nome";
                    
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 mensagem = "<table> <tr> <td><b>Local</b></td> <td><b>Sigla</b></td> <td><b>Município</b></td> </tr>";

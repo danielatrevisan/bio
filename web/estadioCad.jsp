@@ -12,19 +12,19 @@
     String botao = request.getParameter("botao");
 	
 	//Trata a AÃ§Ã£o do BotÃ£o
-    
+out.println(sql);     
     String acao = "";
     if(botao==null){
         acao = "nada";
     }else{
         acao = request.getParameter("botao");
     }
-        
+out.println(sql);        
     if(acao.equals("Salvar")) {
         try {
                 Connection connection = PosFactory.getConnection();
-
-                sql = "insert into estadio (estadio_maturacao_id, nome, observacoes) values ('"+nEstadioMaturacao+"','"+nNome+"','"+nObs+"')";
+out.println(sql);
+                sql = "insert into estadio (estadio_maturacao_id, nome, observacoes) values ("+nEstadioMaturacao+",'"+nNome+"','"+nObs+"')";
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -43,6 +43,9 @@
 <form method="post" id="cadastro" action="index.jsp?url=estadioCad">
     <fieldset>
         <legend>Estádio</legend>
+      <p>
+        <label for="cNome">Estádio: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
+      </p>
       <p>
         <label for="estadioMaturacaoId">Estádio de Maturação: </label>
         <%
@@ -63,15 +66,13 @@
             }
 
         %>
-        <select name="nEstadioMaturacao" id="especieAgrupadaId">        
+        <select name="nEstadioMaturacao" id="especieAgrupadaId"> 
+        <option value="null" selected></option>
         <%while(estadioMaturacao.next()) { %>
             <option value="<%out.print(estadioMaturacao.getString("id"));%>"><%out.print(estadioMaturacao.getString("nome"));%></option>
         <%}%>
         </select>          
       </p>   
-      <p>
-        <label for="cNome">Estádio: </label><input id="cNome" name="tNome" type="text" size="50" maxlength="255"/>
-      </p>
       <p>
         <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"></textarea>
       </p>

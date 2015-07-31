@@ -9,6 +9,11 @@
     String botao = request.getParameter("botao");
 	
 	//Trata a Ação do Botão
+    mensagem = request.getParameter("mensagem");
+    if (mensagem==null)
+    {
+        mensagem="";
+    }
     
     String acao = "";
     if(botao==null){

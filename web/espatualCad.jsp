@@ -45,6 +45,9 @@
     <fieldset>
         <legend>Espatual</legend>
       <p>
+        <label for="cNome">Espatual: </label><input id="cNome" name="tNome" type="text" size="30" maxlength="255"/>
+      </p>
+      <p>
         <label for="especieAgrupadaId">Espécie Agrupada: </label>
         <%
                             ResultSet especieAgrupada = null;
@@ -71,9 +74,6 @@
         <%}%>
         </select>               
       </p>   
-      <p>
-        <label for="cNome">Espatual: </label><input id="cNome" name="tNome" type="text" size="30" maxlength="255"/>
-      </p>
       <p>
         <label for="cObs">Observações: </label><textarea id="cObs" name="tObs"  rows="10" columns="50" maxlength="1000"></textarea>
       </p>
