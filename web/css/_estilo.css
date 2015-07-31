@@ -129,8 +129,8 @@ table {
 	border:0px solid #f0f0f0;
 	width:100%;
 	margin:10px auto 5px;
-	line-height:18px;
-        font-size: 12px;
+	/*line-height:18px;*/
+    font-size: 12px;
 }
 table thead th {
 	border:1px solid #ccc;
@@ -140,7 +140,7 @@ table thead th {
 	text-align:center;
 }
 table tbody tr td { 
-	padding: 5px 7px; 
+	/*padding: 5px 7px;*/
 	border:0px solid #f0f0f0;
 	text-align:left;
 	vertical-align:middle;
@@ -171,7 +171,9 @@ legend{
 }
 fieldset{
     border-color: #cecece;
-    margin: 20px;
+    /*margin: 20px;*/
+    padding: 3px;
+    margin-bottom: 10px;
 }
 
 .botao-form {
