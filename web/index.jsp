@@ -4,7 +4,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.SQLException"%>
-<%@page import="conn.PosFactory"%>
+<%@page import="java.conn.PosFactory"%>
 
 <%
 	String url = request.getParameter("url");
